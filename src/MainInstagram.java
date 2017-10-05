@@ -1,5 +1,6 @@
 import Logic.DBConnection;
 import Service.UserService;
+import dao.UserDAO;
 import entity.User;
 
 import java.sql.Date;
@@ -16,7 +17,7 @@ public class MainInstagram {
         //DBConnection dbConnection = new DBConnection();
         //dbConnection.getConnection();
 
-        UserService userService = new UserService();
+        UserDAO userService = new UserService();
 
         User user = new User();
         user.setLogin("mashera");
