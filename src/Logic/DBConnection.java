@@ -9,7 +9,7 @@ import java.sql.SQLException;
  */
 public class DBConnection {
     private static final String DB_DRIVER = "org.sqlite.JDBC";
-    private static final String DB_URL = "jdbc:sqlite:G:/ITEA/DB/database.db";
+    private static final String DB_URL = "jdbc:sqlite:database.db";
 
     public Connection getConnection() {
         Connection connection = null;

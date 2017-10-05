@@ -20,10 +20,10 @@ public class MainInstagram {
         UserDAO userService = new UserService();
 
         User user = new User();
-        user.setLogin("mashera");
-        user.setPassword("mashera");
-        user.setFirstName("Valera");
-        user.setLastName("Mashera");
+        user.setLogin("22");
+        user.setPassword("33");
+        user.setFirstName("44");
+        user.setLastName("55");
 
         try {
             userService.addUser(user);
