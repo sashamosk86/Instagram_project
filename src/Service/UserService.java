@@ -1,6 +1,6 @@
 package Service;
 
-import Logic.DBConnection;
+import dao.Implementation.DBConnection;
 import dao.UserDAO;
 import entity.User;
 

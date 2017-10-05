@@ -1,11 +1,8 @@
-import Logic.DBConnection;
 import Service.UserService;
 import dao.UserDAO;
 import entity.User;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.util.Calendar;
 
 import static java.time.LocalDate.now;
 
