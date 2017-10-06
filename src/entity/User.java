@@ -12,7 +12,6 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private int isactive;
     private Date insertDt;
 
     public User (){}
@@ -25,9 +24,7 @@ public class User {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
-    }
+    public String getLogin() { return login; }
 
     public void setLogin(String login) {
         this.login = login;
@@ -57,14 +54,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getIsactive() {
-        return isactive;
-    }
-
-    public void setIsactive(int isactive) {
-        this.isactive = isactive;
-    }
-
     public Date getInsertDt() {
         return insertDt;
     }
@@ -81,7 +70,6 @@ public class User {
         User user = (User) o;
 
         if (id != user.id) return false;
-        if (isactive != user.isactive) return false;
         if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
@@ -96,7 +84,6 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + isactive;
         result = 31 * result + (insertDt != null ? insertDt.hashCode() : 0);
         return result;
     }
@@ -109,7 +96,6 @@ public class User {
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", isactive=" + isactive +
                 ", insertDt=" + insertDt +
                 '}';
     }

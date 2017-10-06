@@ -20,5 +20,5 @@ public interface PhotoDAO {
     // update
 
     // delete
-    void removePhoto(Photo photo); // set photo inactive and invisible
+    void removePhoto(Photo photo); // delete photo
 }

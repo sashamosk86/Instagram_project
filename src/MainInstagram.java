@@ -1,4 +1,4 @@
-import Service.UserService;
+import dao.Implementation.UserService;
 import dao.UserDAO;
 import entity.User;
 
@@ -17,7 +17,8 @@ public class MainInstagram {
         UserDAO userService = new UserService();
 
         User user = new User();
-        user.setLogin("22");
+/*
+        user.setLogin("111");
         user.setPassword("33");
         user.setFirstName("44");
         user.setLastName("55");
@@ -27,5 +28,16 @@ public class MainInstagram {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+*/
+
+        user.setLogin("tmoskaliuk");
+        user.setPassword("tania1991");
+
+
+        //System.out.println(login + " " + password );
+
+        System.out.println("user id: " + userService.getUserByLoginAndPassword(user.getLogin(),user.getPassword()));
+
+
     }
 }

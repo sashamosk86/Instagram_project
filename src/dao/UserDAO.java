@@ -13,12 +13,12 @@ public interface UserDAO {
 
     // read
     User getUserById(long id); // get user data by his id
-    User getUserByLoginAndPassword(User login, User password); // get user data by login and password
+    User getUserByLoginAndPassword(String login, String password); // get user data by login and password
 
     // update
-    void updateUser(User user); // update user
+    void updateUser(User user) throws SQLException; // update user
 
     // delete
-    void removeUser(User user); // set user inactive and invisible
+    void removeUser(User user) throws SQLException; // delete user
 
 }

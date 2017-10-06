@@ -10,9 +10,8 @@ import java.util.Arrays;
  */
 public class Photo {
     private long id;
-    private String namePhoto;
+    private String name;
     private byte[] file;
-    private int isactive;
     private long userId;
     private Date insertDt;
 
@@ -26,12 +25,12 @@ public class Photo {
         this.id = id;
     }
 
-    public String getNamePhoto() {
-        return namePhoto;
+    public String getName() {
+        return name;
     }
 
-    public void setNamePhoto(String namePhoto) {
-        this.namePhoto = namePhoto;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public byte[] getFile() {
@@ -40,14 +39,6 @@ public class Photo {
 
     public void setFile(byte[] file) {
         this.file = file;
-    }
-
-    public int getIsactive() {
-        return isactive;
-    }
-
-    public void setIsactive(int isactive) {
-        this.isactive = isactive;
     }
 
     public long getUserId() {
@@ -74,9 +65,8 @@ public class Photo {
         Photo photo = (Photo) o;
 
         if (id != photo.id) return false;
-        if (isactive != photo.isactive) return false;
         if (userId != photo.userId) return false;
-        if (namePhoto != null ? !namePhoto.equals(photo.namePhoto) : photo.namePhoto != null) return false;
+        if (name != null ? !name.equals(photo.name) : photo.name != null) return false;
         if (!Arrays.equals(file, photo.file)) return false;
         return insertDt != null ? insertDt.equals(photo.insertDt) : photo.insertDt == null;
     }
@@ -84,9 +74,8 @@ public class Photo {
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (namePhoto != null ? namePhoto.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + Arrays.hashCode(file);
-        result = 31 * result + isactive;
         result = 31 * result + (int) (userId ^ (userId >>> 32));
         result = 31 * result + (insertDt != null ? insertDt.hashCode() : 0);
         return result;
@@ -96,9 +85,8 @@ public class Photo {
     public String toString() {
         return "Photo{" +
                 "id=" + id +
-                ", namePhoto='" + namePhoto + '\'' +
+                ", namePhoto='" + name + '\'' +
                 ", file=" + Arrays.toString(file) +
-                ", isactive=" + isactive +
                 ", userId=" + userId +
                 ", insertDt=" + insertDt +
                 '}';
