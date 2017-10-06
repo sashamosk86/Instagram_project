@@ -48,7 +48,6 @@ public class UserService extends DBConnection implements UserDAO {
                 connection.close();
             }
         }
-
     }
 
     @Override
