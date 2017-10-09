@@ -5,6 +5,7 @@ import dao.UserDAO;
 import entity.Photo;
 import entity.User;
 
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
 import static java.time.LocalDate.now;
@@ -13,7 +14,7 @@ import static java.time.LocalDate.now;
  * Created by Sasha on 04.10.2017.
  */
 public class MainInstagram {
-    public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException {
         //DBConnection dbConnection = new DBConnection();
         //dbConnection.getConnection();
 /*
@@ -83,7 +84,7 @@ public class MainInstagram {
         PhotoDAO photoService = new PhotoService();
         Photo photo = new Photo();
 
-        /*
+/*
         photo.setId(1);
 
         try {
@@ -91,7 +92,7 @@ public class MainInstagram {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        */
+*/
 /*
         photo.setUserId(1);
         photo.setName("dfdfdf/dfdfdf.jpg");
@@ -102,11 +103,21 @@ public class MainInstagram {
             e.printStackTrace();
         }
 */
+/*
         //photo.setUserId(1);
         try {
             System.out.println(photoService.getAllUserPhoto(1));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        */
+        /*
+        photo.setId(5);
+        try {
+            photoService.removePhoto(photo);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        */
     }
 }

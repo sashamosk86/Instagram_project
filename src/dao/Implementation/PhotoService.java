@@ -5,10 +5,10 @@ import com.sun.scenario.effect.impl.prism.ps.PPSRenderer;
 import dao.PhotoDAO;
 import entity.Photo;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -25,16 +25,20 @@ public class PhotoService extends DBConnection implements PhotoDAO{
     private String sql = "";
 
     @Override
-    public void addPhoto(Photo photo) throws SQLException {
-        sql = "INSERT INTO PHOTO (NAME,  USER_ID, INSERT_DT) VALUES (?, ?, ?)";
+    public void addPhoto(Photo photo) throws SQLException, FileNotFoundException {
+        sql = "INSERT INTO PHOTO (NAME, FILE, USER_ID, INSERT_DT) VALUES (?, ?, ?, ?)";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1,photo.getName());
-            //preparedStatement.setByte(1,photo.getFile());
-            preparedStatement.setLong(2,photo.getUserId());
-            preparedStatement.setString(3,dtf.format(now));
+
+            File image = new File("G:\\JOB\\Bases\\new_schema\\01_cbk_cbp.pdf");
+            FileInputStream fis = new FileInputStream(image);
+            preparedStatement.setBinaryStream(2,fis,(int)image.length());
+
+            preparedStatement.setLong(3,photo.getUserId());
+            preparedStatement.setString(4,dtf.format(now));
 
             preparedStatement.execute();
 
@@ -54,7 +58,7 @@ public class PhotoService extends DBConnection implements PhotoDAO{
     @Override
     public List<Photo> getAllUserPhoto(long id) throws SQLException {
         List<Photo> photoList = new ArrayList<>();
-        sql = "SELECT ID, NAME, USER_ID FROM PHOTO WHERE USER_ID = ?";
+        sql = "SELECT ID, NAME, FILE, USER_ID FROM PHOTO WHERE USER_ID = ?";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -65,7 +69,7 @@ public class PhotoService extends DBConnection implements PhotoDAO{
                 Photo photo = new Photo();
                 photo.setId(resultSet.getLong("ID"));
                 photo.setName(resultSet.getString("NAME"));
-                //photo.setFile(resultSet.getByte("FILE"));
+                photo.setFile(resultSet.getBytes("FILE"));
                 photo.setUserId(resultSet.getLong("USER_ID"));
 
                 photoList.add(photo);
@@ -95,7 +99,7 @@ public class PhotoService extends DBConnection implements PhotoDAO{
             resultSet = preparedStatement.executeQuery();
             photo.setId(resultSet.getLong("ID"));
             photo.setName(resultSet.getString("NAME"));
-           // photo.setFile(resultSet.getByte("FILE"));
+            photo.setFile(resultSet.getBytes("FILE"));
             photo.setUserId(resultSet.getLong("USER_ID"));
             //photo.setInsertDt(resultSet.getDate("INSERT_DT"));
 
