@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class PhotoService extends DBConnection implements PhotoDAO{
     Connection connection = getConnection();
@@ -33,7 +34,9 @@ public class PhotoService extends DBConnection implements PhotoDAO{
 
             preparedStatement.setString(1,photo.getName());
 
-            File image = new File("G:\\JOB\\Bases\\new_schema\\01_cbk_cbp.pdf");
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Input file path:");
+            File image = new File(scanner.nextLine());
             FileInputStream fis = new FileInputStream(image);
             preparedStatement.setBinaryStream(2,fis,(int)image.length());
 

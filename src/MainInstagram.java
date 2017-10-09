@@ -95,7 +95,7 @@ public class MainInstagram {
 */
 /*
         photo.setUserId(1);
-        photo.setName("dfdfdf/dfdfdf.jpg");
+        photo.setName("111");
 
         try {
             photoService.addPhoto(photo);
@@ -111,13 +111,13 @@ public class MainInstagram {
             e.printStackTrace();
         }
         */
-        /*
-        photo.setId(5);
+
+        photo.setId(6);
         try {
             photoService.removePhoto(photo);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        */
+
     }
 }
