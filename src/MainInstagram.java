@@ -1,5 +1,8 @@
+import dao.Implementation.PhotoService;
 import dao.Implementation.UserService;
+import dao.PhotoDAO;
 import dao.UserDAO;
+import entity.Photo;
 import entity.User;
 
 import java.sql.SQLException;
@@ -13,11 +16,11 @@ public class MainInstagram {
     public static void main(String[] args) throws ClassNotFoundException {
         //DBConnection dbConnection = new DBConnection();
         //dbConnection.getConnection();
-
+/*
         UserDAO userService = new UserService();
 
         User user = new User();
-
+*/
 
         // ----------------- addUser
 /*
@@ -53,7 +56,7 @@ public class MainInstagram {
 */
 
         // ----------------- updateUser
-
+/*
         user.setId(3);
         user.setLogin("vmoskaliuk");
         user.setFirstName("Slava");
@@ -64,7 +67,7 @@ public class MainInstagram {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+*/
 
         // ----------------- removeUser
         /*
@@ -77,5 +80,33 @@ public class MainInstagram {
         }
         */
 
+        PhotoDAO photoService = new PhotoService();
+        Photo photo = new Photo();
+
+        /*
+        photo.setId(1);
+
+        try {
+            System.out.println(photoService.getPhotoById(photo.getId()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        */
+/*
+        photo.setUserId(1);
+        photo.setName("dfdfdf/dfdfdf.jpg");
+
+        try {
+            photoService.addPhoto(photo);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+*/
+        //photo.setUserId(1);
+        try {
+            System.out.println(photoService.getAllUserPhoto(1));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

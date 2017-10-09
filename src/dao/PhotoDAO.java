@@ -3,6 +3,7 @@ package dao;
 
 import entity.Photo;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -11,14 +12,14 @@ import java.util.List;
 public interface PhotoDAO {
 
     // create
-    void addPhoto(Photo photo); // add new photo
+    void addPhoto(Photo photo) throws SQLException; // add new photo
 
     // read
-    List<Photo> getAllPhotos(); // get all user photos
-    Photo getPhotoById(long id); // get one photo by id
+    List<Photo> getAllUserPhoto(long id) throws SQLException; // get all user photos
+    Photo getPhotoById(long id) throws SQLException; // get one photo by id
 
     // update
 
     // delete
-    void removePhoto(Photo photo); // delete photo
+    void removePhoto(Photo photo) throws SQLException; // delete photo
 }
