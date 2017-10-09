@@ -9,7 +9,17 @@ public class PhotoComment {
     private long id;
     private long photoId;
     private long userId;
+    private String userLogin;
     private String comment;
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
+
     private Date insertDt;
 
     public PhotoComment(){}
@@ -64,6 +74,7 @@ public class PhotoComment {
         if (id != that.id) return false;
         if (photoId != that.photoId) return false;
         if (userId != that.userId) return false;
+        if (userLogin != null ? !userLogin.equals(that.userLogin) : that.userLogin != null) return false;
         if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
         return insertDt != null ? insertDt.equals(that.insertDt) : that.insertDt == null;
     }
@@ -73,6 +84,7 @@ public class PhotoComment {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (int) (photoId ^ (photoId >>> 32));
         result = 31 * result + (int) (userId ^ (userId >>> 32));
+        result = 31 * result + (userLogin != null ? userLogin.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         result = 31 * result + (insertDt != null ? insertDt.hashCode() : 0);
         return result;
@@ -80,10 +92,11 @@ public class PhotoComment {
 
     @Override
     public String toString() {
-        return "PhotoComment{" +
+        return "PhotoCommentService{" +
                 "id=" + id +
                 ", photoId=" + photoId +
                 ", userId=" + userId +
+                ", userLogin" + userLogin +
                 ", comment='" + comment + '\'' +
                 ", insertDt=" + insertDt +
                 '}';

@@ -9,9 +9,18 @@ public class PhotoLike {
     private long id;
     private long photoId;
     private long userId;
+    private String userLogin;
     private Date insertDt;
 
     public PhotoLike(){}
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
 
     public long getId() {
         return id;
@@ -55,6 +64,7 @@ public class PhotoLike {
         if (id != photoLike.id) return false;
         if (photoId != photoLike.photoId) return false;
         if (userId != photoLike.userId) return false;
+        if (userLogin != null ? !userLogin.equals(photoLike.userLogin) : photoLike.userLogin != null) return false;
         return insertDt != null ? insertDt.equals(photoLike.insertDt) : photoLike.insertDt == null;
     }
 
@@ -63,16 +73,18 @@ public class PhotoLike {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (int) (photoId ^ (photoId >>> 32));
         result = 31 * result + (int) (userId ^ (userId >>> 32));
+        result = 31 * result + (userLogin != null ? userLogin.hashCode() : 0);
         result = 31 * result + (insertDt != null ? insertDt.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "PhotoLike{" +
+        return "PhotoLikeService{" +
                 "id=" + id +
                 ", photoId=" + photoId +
                 ", userId=" + userId +
+                ", userLogin" + userLogin +
                 ", insertDt=" + insertDt +
                 '}';
     }

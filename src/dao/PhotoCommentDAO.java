@@ -2,6 +2,7 @@ package dao;
 
 import entity.PhotoComment;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -9,13 +10,13 @@ import java.util.List;
  */
 public interface PhotoCommentDAO {
     //create
-    void addLike(PhotoComment photoComment);
+    void addComment(PhotoComment photoComment) throws SQLException;
 
     //read
-    List<PhotoComment> getAllComments();
+    List<PhotoComment> getAllComments(long id) throws SQLException;
 
     //update
 
     //delete
-    void removeComment(PhotoComment photoComment);
+    void removeComment(PhotoComment photoComment) throws SQLException;
 }

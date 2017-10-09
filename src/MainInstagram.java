@@ -1,12 +1,19 @@
+import dao.Implementation.PhotoCommentService;
+import dao.Implementation.PhotoLikeService;
 import dao.Implementation.PhotoService;
 import dao.Implementation.UserService;
+import dao.PhotoCommentDAO;
 import dao.PhotoDAO;
+import dao.PhotoLikeDAO;
 import dao.UserDAO;
 import entity.Photo;
+import entity.PhotoComment;
+import entity.PhotoLike;
 import entity.User;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import static java.time.LocalDate.now;
 
@@ -14,7 +21,7 @@ import static java.time.LocalDate.now;
  * Created by Sasha on 04.10.2017.
  */
 public class MainInstagram {
-    public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, ParseException {
         //DBConnection dbConnection = new DBConnection();
         //dbConnection.getConnection();
 /*
@@ -80,10 +87,10 @@ public class MainInstagram {
             e.printStackTrace();
         }
         */
-
+/*
         PhotoDAO photoService = new PhotoService();
         Photo photo = new Photo();
-
+*/
 /*
         photo.setId(1);
 
@@ -103,7 +110,7 @@ public class MainInstagram {
             e.printStackTrace();
         }
 */
-/*
+/*E:\Sasha\Instagram_project\ква_2.jpg
         //photo.setUserId(1);
         try {
             System.out.println(photoService.getAllUserPhoto(1));
@@ -111,13 +118,59 @@ public class MainInstagram {
             e.printStackTrace();
         }
         */
-
+/*
         photo.setId(6);
         try {
             photoService.removePhoto(photo);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+*/
+/*
+        PhotoCommentDAO photoCommentService = new PhotoCommentService();
+        PhotoComment photoComment = new PhotoComment();
+*/
+        /*
+        photoComment.setPhotoId(1);
+        photoComment.setUserId(1);
+        photoComment.setComment("Thank's");
+
+        try {
+            photoCommentService.addComment(photoComment);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        */
+/*
+        try {
+            System.out.println(photoCommentService.getAllComments(1));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        */
+/*
+        photoComment.setId(2);
+        try {
+            photoCommentService.removeComment(photoComment);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        */
+
+        PhotoLikeDAO photoLikeService = new PhotoLikeService();
+        PhotoLike photoLike = new PhotoLike();
+
+        /*
+        photoLike.setPhotoId(1);
+        photoLike.setUserId(1);
+        photoLike.setUserLogin("omoskaliuk");
+
+        try {
+            photoLikeService.addLike(photoLike);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        */
 
     }
 }

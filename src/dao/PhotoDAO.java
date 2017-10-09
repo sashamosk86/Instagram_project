@@ -5,6 +5,7 @@ import entity.Photo;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface PhotoDAO {
 
     // read
     List<Photo> getAllUserPhoto(long id) throws SQLException; // get all user photos
-    Photo getPhotoById(long id) throws SQLException; // get one photo by id
+    Photo getPhotoById(long id) throws SQLException, ParseException; // get one photo by id
 
     // update
 

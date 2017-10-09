@@ -2,6 +2,7 @@ package dao;
 
 import entity.PhotoLike;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
 public interface PhotoLikeDAO {
 
     //create
-    void addLike(PhotoLike photoLike); // add like
+    void addLike(PhotoLike photoLike) throws SQLException; // add like
 
     //read
     List<PhotoLike> getAllLikes();
