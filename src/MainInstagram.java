@@ -24,11 +24,10 @@ public class MainInstagram {
     public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, ParseException {
         //DBConnection dbConnection = new DBConnection();
         //dbConnection.getConnection();
-/*
-        UserDAO userService = new UserService();
 
+        UserDAO userService = new UserService();
         User user = new User();
-*/
+
 
         // ----------------- addUser
 /*
@@ -45,7 +44,7 @@ public class MainInstagram {
 */
 
         // ----------------- getUserById
- /*
+
         user.setId(1);
 
         try {
@@ -53,7 +52,7 @@ public class MainInstagram {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-*/
+
 
         // ----------------- getUserByLoginAndPassword
 /*
@@ -87,10 +86,9 @@ public class MainInstagram {
             e.printStackTrace();
         }
         */
-/*
+
         PhotoDAO photoService = new PhotoService();
         Photo photo = new Photo();
-*/
 /*
         photo.setId(1);
 
@@ -126,10 +124,10 @@ public class MainInstagram {
             e.printStackTrace();
         }
 */
-/*
+
         PhotoCommentDAO photoCommentService = new PhotoCommentService();
         PhotoComment photoComment = new PhotoComment();
-*/
+
         /*
         photoComment.setPhotoId(1);
         photoComment.setUserId(1);

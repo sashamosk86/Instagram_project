@@ -17,7 +17,7 @@ public class DBConnection {
             Class.forName(DB_DRIVER);
             connection = DriverManager.getConnection(DB_URL);
             System.out.println("connection OK!");
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch ( ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             System.out.println("connection ERROR!");
         }
