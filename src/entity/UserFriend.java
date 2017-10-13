@@ -1,6 +1,5 @@
 package entity;
 
-import java.sql.Date;
 
 /**
  * Created by Sasha on 03.10.2017.
@@ -9,7 +8,6 @@ public class UserFriend {
     private long id;
     private long userMasterId;
     private long userSlaveId;
-    private Date insertDt;
 
     public UserFriend(){}
 
@@ -37,13 +35,6 @@ public class UserFriend {
         this.userSlaveId = userSlaveId;
     }
 
-    public Date getInsertDt() {
-        return insertDt;
-    }
-
-    public void setInsertDt(Date insertDt) {
-        this.insertDt = insertDt;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -54,8 +45,7 @@ public class UserFriend {
 
         if (id != that.id) return false;
         if (userMasterId != that.userMasterId) return false;
-        if (userSlaveId != that.userSlaveId) return false;
-        return insertDt != null ? insertDt.equals(that.insertDt) : that.insertDt == null;
+        return userSlaveId == that.userSlaveId;
     }
 
     @Override
@@ -63,7 +53,6 @@ public class UserFriend {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (int) (userMasterId ^ (userMasterId >>> 32));
         result = 31 * result + (int) (userSlaveId ^ (userSlaveId >>> 32));
-        result = 31 * result + (insertDt != null ? insertDt.hashCode() : 0);
         return result;
     }
 
@@ -73,7 +62,6 @@ public class UserFriend {
                 "id=" + id +
                 ", userMasterId=" + userMasterId +
                 ", userSlaveId=" + userSlaveId +
-                ", insertDt=" + insertDt +
                 '}';
     }
 }

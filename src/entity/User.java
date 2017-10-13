@@ -1,7 +1,5 @@
 package entity;
 
-import java.sql.Date;
-import java.time.LocalDate;
 
 /**
  * Created by Sasha on 03.10.2017.
@@ -12,7 +10,6 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private Date insertDt;
 
     public User (){}
 
@@ -54,14 +51,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getInsertDt() {
-        return insertDt;
-    }
-
-    public void setInsertDt(Date insertDt) {
-        this.insertDt = insertDt;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,8 +62,7 @@ public class User {
         if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
-        return insertDt != null ? insertDt.equals(user.insertDt) : user.insertDt == null;
+        return lastName != null ? lastName.equals(user.lastName) : user.lastName == null;
     }
 
     @Override
@@ -84,7 +72,6 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (insertDt != null ? insertDt.hashCode() : 0);
         return result;
     }
 
@@ -96,7 +83,6 @@ public class User {
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", insertDt=" + insertDt +
                 '}';
     }
 }

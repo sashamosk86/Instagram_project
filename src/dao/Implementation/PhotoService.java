@@ -19,17 +19,15 @@ import java.util.Scanner;
 
 public class PhotoService extends DBConnection implements PhotoDAO{
     Connection connection = getConnection();
+
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
 
     private String sql = "";
 
     @Override
     public void addPhoto(Photo photo) throws SQLException, FileNotFoundException {
-        sql = "INSERT INTO PHOTO (NAME, FILE, USER_ID, INSERT_DT) VALUES (?, ?, ?, ?)";
+        sql = "INSERT INTO PHOTO (NAME, FILE, USER_ID) VALUES (?, ?, ?)";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -43,7 +41,6 @@ public class PhotoService extends DBConnection implements PhotoDAO{
             preparedStatement.setBinaryStream(2,fis,(int)image.length());
 
             preparedStatement.setLong(3,photo.getUserId());
-            preparedStatement.setString(4,dtf.format(now));
 
             preparedStatement.execute();
 
@@ -82,6 +79,9 @@ public class PhotoService extends DBConnection implements PhotoDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
+            if (resultSet!=null){
+                resultSet.close();
+            }
             if (preparedStatement!=null){
                 preparedStatement.close();
             }
@@ -95,7 +95,7 @@ public class PhotoService extends DBConnection implements PhotoDAO{
     @Override
     public Photo getPhotoById(long id) throws SQLException {
         Photo photo = new Photo();
-        sql = "SELECT ID, NAME, FILE, USER_ID, INSERT_DT FROM PHOTO WHERE ID = ?";
+        sql = "SELECT ID, NAME, FILE, USER_ID FROM PHOTO WHERE ID = ?";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -106,11 +106,13 @@ public class PhotoService extends DBConnection implements PhotoDAO{
             photo.setName(resultSet.getString("NAME"));
             photo.setFile(resultSet.getBytes("FILE"));
             photo.setUserId(resultSet.getLong("USER_ID"));
-            //photo.setInsertDt(resultSet.getDate("INSERT_DT"));
 
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
+            if (resultSet!=null){
+                resultSet.close();
+            }
             if (preparedStatement!=null){
                 preparedStatement.close();
             }

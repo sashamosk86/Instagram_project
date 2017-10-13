@@ -1,6 +1,5 @@
 package entity;
 
-import java.sql.Date;
 
 /**
  * Created by Sasha on 03.10.2017.
@@ -19,8 +18,6 @@ public class PhotoComment {
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
     }
-
-    private Date insertDt;
 
     public PhotoComment(){}
 
@@ -56,14 +53,6 @@ public class PhotoComment {
         this.comment = comment;
     }
 
-    public Date getInsertDt() {
-        return insertDt;
-    }
-
-    public void setInsertDt(Date insertDt) {
-        this.insertDt = insertDt;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,8 +64,7 @@ public class PhotoComment {
         if (photoId != that.photoId) return false;
         if (userId != that.userId) return false;
         if (userLogin != null ? !userLogin.equals(that.userLogin) : that.userLogin != null) return false;
-        if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
-        return insertDt != null ? insertDt.equals(that.insertDt) : that.insertDt == null;
+        return comment != null ? comment.equals(that.comment) : that.comment == null;
     }
 
     @Override
@@ -86,7 +74,6 @@ public class PhotoComment {
         result = 31 * result + (int) (userId ^ (userId >>> 32));
         result = 31 * result + (userLogin != null ? userLogin.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
-        result = 31 * result + (insertDt != null ? insertDt.hashCode() : 0);
         return result;
     }
 
@@ -98,7 +85,6 @@ public class PhotoComment {
                 ", userId=" + userId +
                 ", userLogin" + userLogin +
                 ", comment='" + comment + '\'' +
-                ", insertDt=" + insertDt +
                 '}';
     }
 }

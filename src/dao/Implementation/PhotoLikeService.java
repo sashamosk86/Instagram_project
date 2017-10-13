@@ -14,23 +14,20 @@ import java.util.List;
 
 public class PhotoLikeService extends DBConnection implements PhotoLikeDAO {
     Connection connection = getConnection();
+
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     private String sql = "";
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
-
     @Override
     public void addLike(PhotoLike photoLike) throws SQLException {
-        sql = "INSERT INTO PHOTO_LIKE (PHOTO_ID,USER_ID,USER_LOGIN,INSERT_DT) VALUES(?,?,?,?)";
+        sql = "INSERT INTO PHOTO_LIKE (PHOTO_ID,USER_ID,USER_LOGIN) VALUES(?,?,?)";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1,photoLike.getPhotoId());
             preparedStatement.setLong(2,photoLike.getUserId());
             preparedStatement.setString(3,photoLike.getUserLogin());
-            preparedStatement.setString(4,dtf.format(now));
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();

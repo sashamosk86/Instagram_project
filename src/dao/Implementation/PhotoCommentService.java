@@ -15,23 +15,21 @@ import java.util.List;
 
 public class PhotoCommentService extends DBConnection implements PhotoCommentDAO {
     Connection connection = getConnection();
+
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-    private String sql = "";
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
+    private String sql = "";
 
     @Override
     public void addComment(PhotoComment photoComment) throws SQLException {
-        sql = "INSERT INTO PHOTO_COMMENT(PHOTO_ID, USER_ID, COMMENT, INSERT_DT) VALUES (?, ?, ?, ?)";
+        sql = "INSERT INTO PHOTO_COMMENT(PHOTO_ID, USER_ID, COMMENT) VALUES (?, ?, ?)";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1,photoComment.getPhotoId());
             preparedStatement.setLong(2,photoComment.getUserId());
             preparedStatement.setString(3,photoComment.getComment());
-            preparedStatement.setString(4,dtf.format(now));
 
             preparedStatement.execute();
         } catch (SQLException e) {
@@ -69,6 +67,9 @@ public class PhotoCommentService extends DBConnection implements PhotoCommentDAO
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+            if (resultSet!=null){
+                resultSet.close();
+            }
             if (preparedStatement!=null){
                 preparedStatement.close();
             }
