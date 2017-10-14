@@ -14,7 +14,7 @@ public interface UserFriendDAO {
     void addFriend(long masterId, long slaveId) throws SQLException;
 
     //read
-    List<UserFriend> getAllFriends(long masterId);
+    List<UserFriend> getAllFriends(long masterId) throws SQLException;
 
     //update
 

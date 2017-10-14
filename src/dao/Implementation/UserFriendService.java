@@ -40,7 +40,7 @@ public class UserFriendService extends DBConnection implements UserFriendDAO {
     }
 
     @Override
-    public List<UserFriend> getAllFriends(long masterId) {
+    public List<UserFriend> getAllFriends(long masterId) throws SQLException {
         List<UserFriend> userFriends = new ArrayList<>();
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
@@ -63,6 +63,16 @@ public class UserFriendService extends DBConnection implements UserFriendDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            if (resultSet!=null){
+                resultSet.close();
+            }
+            if (preparedStatement!=null){
+                preparedStatement.close();
+            }
+            if (connection!=null){
+                connection.close();
+            }
         }
         return userFriends;
     }
