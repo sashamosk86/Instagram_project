@@ -1,15 +1,6 @@
-import dao.Implementation.PhotoCommentService;
-import dao.Implementation.PhotoLikeService;
-import dao.Implementation.PhotoService;
-import dao.Implementation.UserService;
-import dao.PhotoCommentDAO;
-import dao.PhotoDAO;
-import dao.PhotoLikeDAO;
-import dao.UserDAO;
-import entity.Photo;
-import entity.PhotoComment;
-import entity.PhotoLike;
-import entity.User;
+import dao.*;
+import dao.Implementation.*;
+import entity.*;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -44,7 +35,7 @@ public class MainInstagram {
 */
 
         // ----------------- getUserById
-
+/*
         user.setId(1);
 
         try {
@@ -52,7 +43,7 @@ public class MainInstagram {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+*/
 
         // ----------------- getUserByLoginAndPassword
 /*
@@ -170,5 +161,26 @@ public class MainInstagram {
         }
         */
 
+        /*
+        System.out.println(photoLikeService.getAllLikes(1));
+        */
+
+        UserFriendDAO userFriendService = new UserFriendService();
+        UserFriend userFriend = new UserFriend();
+
+        /*
+        userFriend.setUserMasterId(3);
+        userFriend.setUserSlaveId(1);
+
+        try {
+            userFriendService.addFriend(userFriend.getUserMasterId(),userFriend.getUserSlaveId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        */
+        /*
+        userFriend.setUserMasterId(1);
+        System.out.println(userFriendService.getAllFriends(userFriend.getUserMasterId()));
+        */
     }
 }

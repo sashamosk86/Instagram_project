@@ -13,7 +13,7 @@ public interface UserDAO {
 
     // read
     User getUserById(long id) throws SQLException; // get user data by his id
-    User getUserByLoginAndPassword(String login, String password); // get user data by login and password
+    User getUserByLoginAndPassword(String login, String password) throws SQLException; // get user data by login and password
 
     // update
     void updateUser(User user) throws SQLException; // update user

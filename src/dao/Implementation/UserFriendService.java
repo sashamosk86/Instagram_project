@@ -1,8 +1,8 @@
 package dao.Implementation;
 
 import Connection.DBConnection;
-import dao.PhotoLikeDAO;
-import entity.PhotoLike;
+import dao.UserFriendDAO;
+import entity.UserFriend;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,23 +11,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoLikeService extends DBConnection implements PhotoLikeDAO {
+public class UserFriendService extends DBConnection implements UserFriendDAO {
 
-    private String sql = "";
+    String sql = "";
 
     @Override
-    public void addLike(PhotoLike photoLike) throws SQLException {
+    public void addFriend(long masterId, long slaveId) throws SQLException {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
 
-        sql = "INSERT INTO PHOTO_LIKE (PHOTO_ID,USER_ID,USER_LOGIN) VALUES(?,?,?)";
+        sql = "INSERT INTO USER_FRIEND (USER_MASTER_ID, USER_SLAVE_ID) VALUES (?, ?)";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setLong(1,photoLike.getPhotoId());
-            preparedStatement.setLong(2,photoLike.getUserId());
-            preparedStatement.setString(3,photoLike.getUserLogin());
+            preparedStatement.setLong(1,masterId);
+            preparedStatement.setLong(2,slaveId);
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,45 +40,42 @@ public class PhotoLikeService extends DBConnection implements PhotoLikeDAO {
     }
 
     @Override
-    public List<PhotoLike> getAllLikes(long id) {
-        List<PhotoLike> photoLikes = new ArrayList<>();
+    public List<UserFriend> getAllFriends(long masterId) {
+        List<UserFriend> userFriends = new ArrayList<>();
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        sql = "SELECT ID, PHOTO_ID, USER_ID, USER_LOGIN FROM PHOTO_LIKE WHERE PHOTO_ID = ?";
+        sql = "SELECT ID, USER_MASTER_ID, USER_SLAVE_ID FROM USER_FRIEND WHERE USER_MASTER_ID = ?";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setLong(1,id);
+            preparedStatement.setLong(1,masterId);
 
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                PhotoLike photoLike = new PhotoLike();
-                photoLike.setId(resultSet.getLong("ID"));
-                photoLike.setPhotoId(resultSet.getLong("PHOTO_ID"));
-                photoLike.setUserId(resultSet.getLong("USER_ID"));
-                photoLike.setUserLogin(resultSet.getString("USER_LOGIN"));
+                UserFriend userFriend = new UserFriend();
+                userFriend.setId(resultSet.getLong("ID"));
+                userFriend.setUserMasterId(resultSet.getLong("USER_MASTER_ID"));
+                userFriend.setUserSlaveId(resultSet.getLong("USER_SLAVE_ID"));
 
-                photoLikes.add(photoLike);
+                userFriends.add(userFriend);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return photoLikes;
+        return userFriends;
     }
 
     @Override
-    public void removeLike(PhotoLike photoLike) throws SQLException {
+    public void removeFriend(long slaveId) throws SQLException {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
 
-        sql = "DELETE FROM PHOTO_LIKE WHERE ID = ?";
-
+        sql = "DELETE FROM USER_FRIEND WHERE USER_SLAVE_ID = ?";
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setLong(1,photoLike.getId());
-
+            preparedStatement.setLong(1,slaveId);
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,6 +87,5 @@ public class PhotoLikeService extends DBConnection implements PhotoLikeDAO {
                 connection.close();
             }
         }
-
     }
 }

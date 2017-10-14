@@ -1,26 +1,15 @@
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class Test {
     public static void main(String[] args) {
-        List<String> staff = new LinkedList<>();
-        staff.add("Sasha");
-        staff.add("Tania");
-        staff.add("Slava");
+        SortedSet<String> word = new TreeSet<>();
+        word.add("bob");
+        word.add("klara");
+        word.add("kep");
 
-        Iterator iterator = staff.iterator();
-        iterator.next();
-        iterator.next();
+        for (String s: word) {
+            System.out.println(s);
+        }
 
-        ListIterator<String> iter = staff.listIterator();
-        iter.next();
-        iter.next();
-        iter.add("Bob");
-        iter.previous();
-        iter.set("Klara");
-        //iter.add("Bob");
-        System.out.println(staff);
     }
 }

@@ -12,17 +12,9 @@ public class PhotoComment {
     private String userLogin;
     private String comment;
 
-    public String getUserLogin() {
-        return userLogin;
-    }
-
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
-    }
-
-    private Date insertDt;
 
     public PhotoComment(){}
+
 
     public long getId() {
         return id;
@@ -48,20 +40,20 @@ public class PhotoComment {
         this.userId = userId;
     }
 
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
+
     public String getComment() {
         return comment;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public Date getInsertDt() {
-        return insertDt;
-    }
-
-    public void setInsertDt(Date insertDt) {
-        this.insertDt = insertDt;
     }
 
     @Override
@@ -75,8 +67,7 @@ public class PhotoComment {
         if (photoId != that.photoId) return false;
         if (userId != that.userId) return false;
         if (userLogin != null ? !userLogin.equals(that.userLogin) : that.userLogin != null) return false;
-        if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
-        return insertDt != null ? insertDt.equals(that.insertDt) : that.insertDt == null;
+        return comment != null ? comment.equals(that.comment) : that.comment == null;
     }
 
     @Override
@@ -86,7 +77,6 @@ public class PhotoComment {
         result = 31 * result + (int) (userId ^ (userId >>> 32));
         result = 31 * result + (userLogin != null ? userLogin.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
-        result = 31 * result + (insertDt != null ? insertDt.hashCode() : 0);
         return result;
     }
 
@@ -98,7 +88,6 @@ public class PhotoComment {
                 ", userId=" + userId +
                 ", userLogin" + userLogin +
                 ", comment='" + comment + '\'' +
-                ", insertDt=" + insertDt +
                 '}';
     }
 }

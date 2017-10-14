@@ -14,10 +14,10 @@ public interface PhotoLikeDAO {
     void addLike(PhotoLike photoLike) throws SQLException; // add like
 
     //read
-    List<PhotoLike> getAllLikes();
+    List<PhotoLike> getAllLikes(long id);
 
     //update
 
     //delete
-    void removeLike(PhotoLike photoLike);
+    void removeLike(PhotoLike photoLike) throws SQLException;
 }
