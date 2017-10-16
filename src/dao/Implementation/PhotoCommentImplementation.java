@@ -2,7 +2,7 @@ package dao.Implementation;
 
 import Connection.DBConnection;
 import dao.PhotoCommentDAO;
-import entity.PhotoComment;
+import domain.PhotoComment;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoCommentService extends DBConnection implements PhotoCommentDAO {
+public class PhotoCommentImplementation extends DBConnection implements PhotoCommentDAO {
 
     private String sql = "";
 

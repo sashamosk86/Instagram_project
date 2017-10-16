@@ -1,9 +1,8 @@
 import dao.*;
 import dao.Implementation.*;
-import entity.*;
+import domain.*;
 
 import java.io.FileNotFoundException;
-import java.sql.SQLException;
 import java.text.ParseException;
 
 import static java.time.LocalDate.now;
@@ -16,7 +15,7 @@ public class MainInstagram {
         //DBConnection dbConnection = new DBConnection();
         //dbConnection.getConnection();
 
-        UserDAO userService = new UserService();
+        UserDAO userService = new UserImplementation();
         User user = new User();
 
 
@@ -78,7 +77,7 @@ public class MainInstagram {
         }
         */
 
-        PhotoDAO photoService = new PhotoService();
+        PhotoDAO photoService = new PhotoImplementation();
         Photo photo = new Photo();
 /*
         photo.setId(1);
@@ -116,7 +115,7 @@ public class MainInstagram {
         }
 */
 
-        PhotoCommentDAO photoCommentService = new PhotoCommentService();
+        PhotoCommentDAO photoCommentService = new PhotoCommentImplementation();
         PhotoComment photoComment = new PhotoComment();
 
         /*
@@ -146,7 +145,7 @@ public class MainInstagram {
         }
         */
 
-        PhotoLikeDAO photoLikeService = new PhotoLikeService();
+        PhotoLikeDAO photoLikeService = new PhotoLikeImplementation();
         PhotoLike photoLike = new PhotoLike();
 
         /*
@@ -165,7 +164,7 @@ public class MainInstagram {
         System.out.println(photoLikeService.getAllLikes(1));
         */
 
-        UserFriendDAO userFriendService = new UserFriendService();
+        UserFriendDAO userFriendService = new UserFriendImplementation();
         UserFriend userFriend = new UserFriend();
 
         /*

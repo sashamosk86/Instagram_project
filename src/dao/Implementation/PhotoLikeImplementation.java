@@ -2,7 +2,7 @@ package dao.Implementation;
 
 import Connection.DBConnection;
 import dao.PhotoLikeDAO;
-import entity.PhotoLike;
+import domain.PhotoLike;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoLikeService extends DBConnection implements PhotoLikeDAO {
+public class PhotoLikeImplementation extends DBConnection implements PhotoLikeDAO {
 
     private String sql = "";
 

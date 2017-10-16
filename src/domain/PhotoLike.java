@@ -1,19 +1,19 @@
-package entity;
-
-import java.sql.Date;
+package domain;
 
 /**
  * Created by Sasha on 03.10.2017.
  */
-public class PhotoLike {
+public class PhotoLike{
+
     private long id;
     private long photoId;
     private long userId;
     private String userLogin;
 
 
-    public PhotoLike(){}
-
+    public PhotoLike(){
+        super();
+    }
 
     public long getId() {
         return id;
@@ -71,11 +71,11 @@ public class PhotoLike {
 
     @Override
     public String toString() {
-        return "PhotoLikeService{" +
+        return "PhotoLike{" +
                 "id=" + id +
                 ", photoId=" + photoId +
                 ", userId=" + userId +
-                ", userLogin=" + userLogin +
+                ", userLogin='" + userLogin + '\'' +
                 '}';
     }
 }

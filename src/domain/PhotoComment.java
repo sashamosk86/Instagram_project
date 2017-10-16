@@ -1,11 +1,10 @@
-package entity;
-
-import java.sql.Date;
+package domain;
 
 /**
  * Created by Sasha on 03.10.2017.
  */
-public class PhotoComment {
+public class PhotoComment{
+
     private long id;
     private long photoId;
     private long userId;
@@ -13,8 +12,9 @@ public class PhotoComment {
     private String comment;
 
 
-    public PhotoComment(){}
-
+    public PhotoComment(){
+        super();
+    }
 
     public long getId() {
         return id;
@@ -82,11 +82,11 @@ public class PhotoComment {
 
     @Override
     public String toString() {
-        return "PhotoCommentService{" +
+        return "PhotoComment{" +
                 "id=" + id +
                 ", photoId=" + photoId +
                 ", userId=" + userId +
-                ", userLogin" + userLogin +
+                ", userLogin='" + userLogin + '\'' +
                 ", comment='" + comment + '\'' +
                 '}';
     }

@@ -1,9 +1,8 @@
 package dao.Implementation;
 
 import Connection.DBConnection;
-import com.sun.scenario.effect.impl.prism.ps.PPSRenderer;
 import dao.PhotoDAO;
-import entity.Photo;
+import domain.Photo;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PhotoService extends DBConnection implements PhotoDAO{
+public class PhotoImplementation extends DBConnection implements PhotoDAO{
 
     private String sql = "";
 
