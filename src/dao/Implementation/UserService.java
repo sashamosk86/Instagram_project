@@ -6,20 +6,19 @@ import entity.User;
 
 import java.sql.*;
 
-
 /**
  * Created by Sasha on 05.10.2017.
  */
 public class UserService extends DBConnection implements UserDAO {
-   private String sql = "";
+    private String sql = "";
 
 
     @Override
     public void addUser(User user) throws SQLException {
-        sql = "INSERT INTO USER (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME) VALUES(?,?,?,?)";
-
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
+
+        sql = "INSERT INTO USER (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME) VALUES(?,?,?,?)";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -44,12 +43,12 @@ public class UserService extends DBConnection implements UserDAO {
 
     @Override
     public User getUserById(long id) throws SQLException {
-        sql = "SELECT ID, LOGIN, PASSWORD, FIRST_NAME, LAST_NAME FROM USER WHERE ID = ?";
-
         User user = new User();
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+
+        sql = "SELECT ID, LOGIN, PASSWORD, FIRST_NAME, LAST_NAME FROM USER WHERE ID = ?";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -57,38 +56,38 @@ public class UserService extends DBConnection implements UserDAO {
 
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+
                 user.setId(resultSet.getLong("ID"));
                 user.setLogin(resultSet.getString("LOGIN"));
                 user.setPassword(resultSet.getString("PASSWORD"));
                 user.setFirstName(resultSet.getString("FIRST_NAME"));
                 user.setLastName(resultSet.getString("LAST_NAME"));
             }
-        } catch (SQLException e1) {
-            e1.printStackTrace();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
-            try{
-                if (resultSet!=null) {
-                    resultSet.close();
-                }
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            }catch (SQLException e){}
+            if (resultSet!=null){
+                resultSet.close();
+            }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null){
+                connection.close();
+            }
         }
         return user;
     }
 
     @Override
     public User getUserByLoginAndPassword(String login, String password) throws SQLException {
-        sql = "SELECT ID, LOGIN, PASSWORD, FIRST_NAME, LAST_NAME FROM USER WHERE LOGIN = ? AND PASSWORD = ?";
-
         User user = new User();
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+
+        sql = "SELECT ID, LOGIN, PASSWORD, FIRST_NAME, LAST_NAME FROM USER WHERE LOGIN = ? AND PASSWORD = ?";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -96,23 +95,23 @@ public class UserService extends DBConnection implements UserDAO {
             preparedStatement.setString(2, password);
 
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                user.setId(resultSet.getLong("ID"));
-                user.setLogin(resultSet.getString("LOGIN"));
-                user.setPassword(resultSet.getString("PASSWORD"));
-                user.setFirstName(resultSet.getString("FIRST_NAME"));
-                user.setLastName(resultSet.getString("LAST_NAME"));
-            }
+
+            user.setId(resultSet.getLong("ID"));
+            user.setLogin(resultSet.getString("LOGIN"));
+            user.setPassword(resultSet.getString("PASSWORD"));
+            user.setFirstName(resultSet.getString("FIRST_NAME"));
+            user.setLastName(resultSet.getString("LAST_NAME"));
+
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            if (resultSet!=null){
+            if (resultSet != null) {
                 resultSet.close();
             }
-            if (preparedStatement!=null){
+            if (preparedStatement != null) {
                 preparedStatement.close();
             }
-            if (connection!=null){
+            if (connection != null) {
                 connection.close();
             }
         }
@@ -121,10 +120,10 @@ public class UserService extends DBConnection implements UserDAO {
 
     @Override
     public void updateUser(User user) throws SQLException {
-        sql = "UPDATE USER SET LOGIN = ?, FIRST_NAME = ?, LAST_NAME = ? WHERE ID = ?";
-
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
+
+        sql = "UPDATE USER SET LOGIN = ?, FIRST_NAME = ?, LAST_NAME = ? WHERE ID = ?";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -149,10 +148,10 @@ public class UserService extends DBConnection implements UserDAO {
 
     @Override
     public void removeUser(User user) throws SQLException {
-        sql = "DELETE FROM USER WHERE ID = ?";
-
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
+
+        sql = "DELETE FROM USER WHERE ID = ?";
 
         try {
             preparedStatement = connection.prepareStatement(sql);

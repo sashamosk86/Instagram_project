@@ -1,5 +1,6 @@
 package entity;
 
+import java.sql.Date;
 
 /**
  * Created by Sasha on 03.10.2017.
@@ -9,7 +10,9 @@ public class UserFriend {
     private long userMasterId;
     private long userSlaveId;
 
+
     public UserFriend(){}
+
 
     public long getId() {
         return id;
@@ -35,7 +38,6 @@ public class UserFriend {
         this.userSlaveId = userSlaveId;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,7 +60,7 @@ public class UserFriend {
 
     @Override
     public String toString() {
-        return "UserFriend{" +
+        return "UserFriendService{" +
                 "id=" + id +
                 ", userMasterId=" + userMasterId +
                 ", userSlaveId=" + userSlaveId +

@@ -3,6 +3,7 @@ package dao;
 import entity.User;
 import entity.UserFriend;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -10,13 +11,13 @@ import java.util.List;
  */
 public interface UserFriendDAO {
     //create
-    void addFriend(User user);
+    void addFriend(long masterId, long slaveId) throws SQLException;
 
     //read
-    List<UserFriend> getAllFriends();
+    List<UserFriend> getAllFriends(long masterId) throws SQLException;
 
     //update
 
     //delete
-    void removeFriend(UserFriend userFriend);
+    void removeFriend(long slaveId) throws SQLException;
 }

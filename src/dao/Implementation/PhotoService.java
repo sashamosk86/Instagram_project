@@ -9,24 +9,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class PhotoService extends DBConnection implements PhotoDAO{
-    Connection connection = getConnection();
-
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null;
 
     private String sql = "";
 
     @Override
     public void addPhoto(Photo photo) throws SQLException, FileNotFoundException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+
         sql = "INSERT INTO PHOTO (NAME, FILE, USER_ID) VALUES (?, ?, ?)";
 
         try {
@@ -39,8 +34,6 @@ public class PhotoService extends DBConnection implements PhotoDAO{
             File image = new File(scanner.nextLine());
             FileInputStream fis = new FileInputStream(image);
             preparedStatement.setBinaryStream(2,fis,(int)image.length());
-
-            preparedStatement.setLong(3,photo.getUserId());
 
             preparedStatement.execute();
 
@@ -60,6 +53,10 @@ public class PhotoService extends DBConnection implements PhotoDAO{
     @Override
     public List<Photo> getAllUserPhoto(long id) throws SQLException {
         List<Photo> photoList = new ArrayList<>();
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         sql = "SELECT ID, NAME, FILE, USER_ID FROM PHOTO WHERE USER_ID = ?";
 
         try {
@@ -95,6 +92,10 @@ public class PhotoService extends DBConnection implements PhotoDAO{
     @Override
     public Photo getPhotoById(long id) throws SQLException {
         Photo photo = new Photo();
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         sql = "SELECT ID, NAME, FILE, USER_ID FROM PHOTO WHERE ID = ?";
 
         try {
@@ -125,6 +126,9 @@ public class PhotoService extends DBConnection implements PhotoDAO{
 
     @Override
     public void removePhoto(Photo photo) throws SQLException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+
         sql = "DELETE FROM PHOTO WHERE ID = ?";
 
         try {

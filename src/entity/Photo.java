@@ -1,6 +1,7 @@
 package entity;
 
 import java.sql.Blob;
+import java.sql.Date;
 import java.util.Arrays;
 
 
@@ -13,7 +14,9 @@ public class Photo {
     private byte[] file;
     private long userId;
 
+
     public Photo() {}
+
 
     public long getId() {
         return id;
@@ -46,7 +49,6 @@ public class Photo {
     public void setUserId(long userId) {
         this.userId = userId;
     }
-
 
     @Override
     public boolean equals(Object o) {

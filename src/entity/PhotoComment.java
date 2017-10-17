@@ -1,5 +1,6 @@
 package entity;
 
+import java.sql.Date;
 
 /**
  * Created by Sasha on 03.10.2017.
@@ -11,15 +12,9 @@ public class PhotoComment {
     private String userLogin;
     private String comment;
 
-    public String getUserLogin() {
-        return userLogin;
-    }
-
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
-    }
 
     public PhotoComment(){}
+
 
     public long getId() {
         return id;
@@ -43,6 +38,14 @@ public class PhotoComment {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 
     public String getComment() {

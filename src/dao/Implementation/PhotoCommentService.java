@@ -8,21 +8,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PhotoCommentService extends DBConnection implements PhotoCommentDAO {
-    Connection connection = getConnection();
-
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null;
 
     private String sql = "";
 
     @Override
     public void addComment(PhotoComment photoComment) throws SQLException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+
         sql = "INSERT INTO PHOTO_COMMENT(PHOTO_ID, USER_ID, COMMENT) VALUES (?, ?, ?)";
 
         try {
@@ -47,6 +44,10 @@ public class PhotoCommentService extends DBConnection implements PhotoCommentDAO
     @Override
     public List<PhotoComment> getAllComments(long id) throws SQLException {
         List<PhotoComment> photoComments = new ArrayList<>();
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         sql = "SELECT ID, PHOTO_ID,USER_ID,USER_LOGIN,COMMENT FROM PHOTO_COMMENT WHERE PHOTO_ID= ?";
 
         try {
@@ -82,6 +83,9 @@ public class PhotoCommentService extends DBConnection implements PhotoCommentDAO
 
     @Override
     public void removeComment(PhotoComment photoComment) throws SQLException {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+
         sql = "DELETE FROM PHOTO_COMMENT WHERE ID = ?";
 
         try {

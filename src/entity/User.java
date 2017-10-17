@@ -1,5 +1,7 @@
 package entity;
 
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * Created by Sasha on 03.10.2017.
@@ -11,7 +13,9 @@ public class User {
     private String firstName;
     private String lastName;
 
+
     public User (){}
+
 
     public long getId() {
         return id;
