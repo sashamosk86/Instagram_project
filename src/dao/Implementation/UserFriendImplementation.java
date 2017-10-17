@@ -2,7 +2,7 @@ package dao.Implementation;
 
 import Connection.DBConnection;
 import dao.UserFriendDAO;
-import entity.UserFriend;
+import domain.UserFriend;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserFriendService extends DBConnection implements UserFriendDAO {
+public class UserFriendImplementation extends DBConnection implements UserFriendDAO {
 
     String sql = "";
 

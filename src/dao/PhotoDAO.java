@@ -1,7 +1,7 @@
 package dao;
 
 
-import entity.Photo;
+import domain.Photo;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;

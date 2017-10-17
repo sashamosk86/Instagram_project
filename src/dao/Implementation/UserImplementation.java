@@ -2,14 +2,14 @@ package dao.Implementation;
 
 import Connection.DBConnection;
 import dao.UserDAO;
-import entity.User;
+import domain.User;
 
 import java.sql.*;
 
 /**
  * Created by Sasha on 05.10.2017.
  */
-public class UserService extends DBConnection implements UserDAO {
+public class UserImplementation extends DBConnection implements UserDAO {
     private String sql = "";
 
 

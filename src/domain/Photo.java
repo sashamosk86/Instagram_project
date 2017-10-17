@@ -1,7 +1,5 @@
-package entity;
+package domain;
 
-import java.sql.Blob;
-import java.sql.Date;
 import java.util.Arrays;
 
 
@@ -9,6 +7,7 @@ import java.util.Arrays;
  * Created by Sasha on 03.10.2017.
  */
 public class Photo {
+
     private long id;
     private String name;
     private byte[] file;
@@ -16,7 +15,6 @@ public class Photo {
 
 
     public Photo() {}
-
 
     public long getId() {
         return id;
@@ -76,7 +74,7 @@ public class Photo {
     public String toString() {
         return "Photo{" +
                 "id=" + id +
-                ", namePhoto='" + name + '\'' +
+                ", name='" + name + '\'' +
                 ", file=" + Arrays.toString(file) +
                 ", userId=" + userId +
                 '}';

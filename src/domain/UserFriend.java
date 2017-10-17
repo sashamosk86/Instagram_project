@@ -1,17 +1,18 @@
-package entity;
-
-import java.sql.Date;
+package domain;
 
 /**
  * Created by Sasha on 03.10.2017.
  */
-public class UserFriend {
+public class UserFriend{
+
     private long id;
     private long userMasterId;
     private long userSlaveId;
 
 
-    public UserFriend(){}
+    public UserFriend(){
+        super();
+    }
 
 
     public long getId() {
@@ -60,7 +61,7 @@ public class UserFriend {
 
     @Override
     public String toString() {
-        return "UserFriendService{" +
+        return "UserFriend{" +
                 "id=" + id +
                 ", userMasterId=" + userMasterId +
                 ", userSlaveId=" + userSlaveId +

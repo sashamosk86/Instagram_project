@@ -1,7 +1,6 @@
 package dao;
 
-import entity.User;
-import entity.UserFriend;
+import domain.UserFriend;
 
 import java.sql.SQLException;
 import java.util.List;

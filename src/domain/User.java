@@ -1,12 +1,10 @@
-package entity;
-
-import java.sql.Date;
-import java.time.LocalDate;
+package domain;
 
 /**
  * Created by Sasha on 03.10.2017.
  */
-public class User {
+public class User{
+
     private long id;
     private String login;
     private String password;
@@ -14,8 +12,9 @@ public class User {
     private String lastName;
 
 
-    public User (){}
-
+    public User (){
+        super();
+    }
 
     public long getId() {
         return id;

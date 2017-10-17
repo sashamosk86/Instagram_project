@@ -1,6 +1,6 @@
 package dao;
 
-import entity.PhotoLike;
+import domain.PhotoLike;
 
 import java.sql.SQLException;
 import java.util.List;

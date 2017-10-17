@@ -1,6 +1,6 @@
 package dao;
 
-import entity.PhotoComment;
+import domain.PhotoComment;
 
 import java.sql.SQLException;
 import java.util.List;
