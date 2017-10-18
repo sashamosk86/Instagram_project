@@ -5,6 +5,8 @@ import dao.UserDAO;
 import domain.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sasha on 05.10.2017.
@@ -116,6 +118,45 @@ public class UserImplementation extends DBConnection implements UserDAO {
             }
         }
         return user;
+    }
+
+    @Override
+    public List<User> getUserListByLogin(String userLogin) throws SQLException {
+        List<User> users = new ArrayList<>();
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        sql = "SELECT ID, LOGIN, FIRST_NAME, LAST_NAME FROM USER WHERE lower(LOGIN) LIKE lower(?)";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,"%" + userLogin + "%");
+
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                User user = new User();
+                user.setId(resultSet.getLong("ID"));
+                user.setLogin(resultSet.getString("LOGIN"));
+                user.setFirstName(resultSet.getString("FIRST_NAME"));
+                user.setLastName(resultSet.getString("LAST_NAME"));
+
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (resultSet!=null){
+                resultSet.close();
+            }
+            if (preparedStatement!=null){
+                preparedStatement.close();
+            }
+            if (connection!=null){
+                connection.close();
+            }
+        }
+        return users;
     }
 
     @Override

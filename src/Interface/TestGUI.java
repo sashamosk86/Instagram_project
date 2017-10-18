@@ -10,6 +10,7 @@ public class TestGUI {
            @Override
            public void run() {
                new LoginWindow();
+               //new CreateUserWindow();
            }
        });
 
