@@ -18,7 +18,7 @@ public class CreateUserWindow {
     private String lastName;
 
    public CreateUserWindow(){
-       JFrame jfrm = new JFrame("Create user");
+       JFrame jfrm = new JFrame("Create user menu");
        jfrm.setLayout(new FlowLayout());
        jfrm.setSize(400,200);
        jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +35,7 @@ public class CreateUserWindow {
        JTextField lastNameField = new JTextField(15);
 
        JButton saveButton = new JButton("Save");
-       JButton cancelButton = new JButton("Exit");
+       JButton cancelButton = new JButton("Cancel");
 
        jfrm.add(loginLabel);
        jfrm.add(loginField);
@@ -101,7 +101,7 @@ public class CreateUserWindow {
        cancelButton.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-               System.exit(0);
+               ExitWindow exitWindow = new ExitWindow();
            }
        });
 

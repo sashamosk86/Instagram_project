@@ -11,6 +11,7 @@ public class TestGUI {
            public void run() {
                new LoginWindow();
                //new CreateUserWindow();
+               //new ExitWindow();
            }
        });
 

@@ -38,9 +38,6 @@ public class LoginWindow {
         JButton jCreateUserButton = new JButton("Create new user");
 
 
-
-
-        // добавляем все в Фрейм:
         jfrm.add(jLoginLabel);
         jfrm.add(jLoginText);
 
@@ -89,8 +86,8 @@ public class LoginWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jlab.setText("Closing...");
-                System.exit(0);
                 System.out.println("Bye");
+                ExitWindow exitWindow = new ExitWindow();
             }
         });
 
