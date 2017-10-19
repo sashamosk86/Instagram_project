@@ -1,5 +1,7 @@
 package Interface;
 
+import FromBook.Test;
+
 import javax.swing.*;
 
 public class TestGUI {
@@ -9,9 +11,10 @@ public class TestGUI {
        SwingUtilities.invokeLater(new Runnable() {
            @Override
            public void run() {
-               new LoginWindow();
+               //new LoginWindow();
                //new CreateUserWindow();
                //new ExitWindow();
+               new Test();
            }
        });
 
