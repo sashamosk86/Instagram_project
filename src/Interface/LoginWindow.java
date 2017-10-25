@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class LoginWindow {
+public class LoginWindow{
     private JLabel jlab;
 
     private String login = "";
@@ -20,14 +20,14 @@ public class LoginWindow {
 
         JFrame jfrm = new JFrame("Instagram");
         jfrm.setLayout(new FlowLayout());
-        jfrm.setSize(500,250);
+        jfrm.setSize(400,250);
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jfrm.setVisible(true);
 
 
         JLabel jLoginLabel = new JLabel("Login:");
         JLabel jPasswordLabel = new JLabel("Password:");
-        jlab = new JLabel("");
+        jlab = new JLabel("Action");
 
         JTextField jLoginText = new JTextField(15);
         JTextField jPasswordText = new JTextField(15);
@@ -103,4 +103,5 @@ public class LoginWindow {
 
 
     }
+
 }
