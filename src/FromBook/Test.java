@@ -8,63 +8,88 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class Test extends JFrame{
+public class Test extends JFrame implements ActionListener{
+    private JLabel jlab = new JLabel();
+
     public Test() {
-        setTitle("Test");
+        setTitle("Menu Frame");
         setLayout(new FlowLayout());
-        setSize(400, 300);
+        setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
 
-/*
-        JTabbedPane jtb = new JTabbedPane();
-        jtb.addTab("Cities", new CitiesPanel());
-        jtb.addTab("Colors", new ColorsPanel());
-        jtb.addTab("Flavors", new FlavorsPanel());
 
-        add(jtb);
-*/
-/*
-        JPanel jp = new JPanel();
-        jp.setLayout(new GridLayout(20,20));
-        int b = 1;
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                jp.add(new JButton("Button " + b));
-                ++b;
-            }
-        }
-        JScrollPane jsp = new JScrollPane(jp);
-        add(jsp, BorderLayout.CENTER);
-*/
 
-        JLabel jlab;
-        ImageIcon apple,banana,cherry,kiwi,lemon,strawberry;
-        JComboBox<String> jcb;
+        JMenuBar menu = new JMenuBar();
 
-        String[] fruits = {"apple","banana","cherry","kiwi","lemon","strawberry"};
+        JMenu file = new JMenu("File");
+        JMenuItem open = new JMenuItem("Open");
+        JMenuItem close = new JMenuItem("Close");
+        JMenuItem save = new JMenuItem("Save");
+        JMenuItem exit = new JMenuItem("Exit");
+        file.add(open);
+        file.add(close);
+        file.add(save);
+        file.addSeparator();
+        file.add(exit);
+        menu.add(file);
 
-        jcb = new JComboBox<>(fruits);
-        add(jcb);
 
-        jlab = new JLabel(new ImageIcon("G:\\icons\\apple.png"));
+        JMenu options = new JMenu("Options");
 
-        jcb.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = (String) jcb.getSelectedItem();
-                jlab.setIcon(new ImageIcon("G:\\icons\\" + s + ".png"));
-            }
-        });
+        JMenu colors = new JMenu("Colors");
+        JMenuItem red = new JMenuItem("Red");
+        JMenuItem green = new JMenuItem("Green");
+        JMenuItem blue = new JMenuItem("Blue");
+        colors.add(red);
+        colors.add(green);
+        colors.add(blue);
+        options.add(colors);
+
+        JMenu priority = new JMenu("Priority");
+        JMenuItem high = new JMenuItem("High");
+        JMenuItem low = new JMenuItem("Low");
+        priority.add(high);
+        priority.add(low);
+        options.add(priority);
+
+        JMenuItem reset = new JMenuItem("Reset");
+        options.add(reset);
+
+        menu.add(options);
+
+        JMenu help = new JMenu("Help");
+        JMenuItem about = new JMenuItem("About");
+        help.add(about);
+        menu.add(help);
+
+        open.addActionListener(this);
+        close.addActionListener(this);
+        save.addActionListener(this);
+        exit.addActionListener(this);
+        red.addActionListener(this);
+        green.addActionListener(this);
+        blue.addActionListener(this);
+        high.addActionListener(this);
+        low.addActionListener(this);
+        reset.addActionListener(this);
+        about.addActionListener(this);
+
 
         add(jlab);
 
 
+        setJMenuBar(menu);
 
+    }
 
-
-
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String s = e.getActionCommand();
+        if (s.equals("Exit"))
+            System.exit(0);
+        jlab.setText(s + " Selected");
     }
 }
 

@@ -1,8 +1,6 @@
 package Interface;
 
-import FromBook.FlagButton;
 import FromBook.Test;
-import FromBook.Toggle;
 
 import javax.swing.*;
 
