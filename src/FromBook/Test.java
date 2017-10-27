@@ -6,6 +6,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 
 public class Test extends JFrame implements ActionListener{
@@ -18,16 +20,19 @@ public class Test extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
-
-
-
+        /*Полоса меню*/
         JMenuBar menu = new JMenuBar();
 
         JMenu file = new JMenu("File");
-        JMenuItem open = new JMenuItem("Open");
-        JMenuItem close = new JMenuItem("Close");
-        JMenuItem save = new JMenuItem("Save");
-        JMenuItem exit = new JMenuItem("Exit");
+        ImageIcon openI = new ImageIcon("G:\\icons\\open.png");
+        JMenuItem open = new JMenuItem("Open",openI);
+        open.setToolTipText("Открытие файла");
+        ImageIcon closeI = new ImageIcon("G:\\icons\\close.png");
+        JMenuItem close = new JMenuItem("Close",closeI);
+        ImageIcon saveI = new ImageIcon("G:\\icons\\save.png");
+        JMenuItem save = new JMenuItem("Save",saveI);
+        ImageIcon exitI = new ImageIcon("G:\\icons\\exit.png");
+        JMenuItem exit = new JMenuItem("Exit",exitI);
         file.add(open);
         file.add(close);
         file.add(save);
@@ -64,6 +69,21 @@ public class Test extends JFrame implements ActionListener{
         help.add(about);
         menu.add(help);
 
+
+        JMenu settings = new JMenu("Settings");
+        JMenu display = new JMenu("Display");
+        JMenu rezolution = new JMenu("Rezolution");
+        JMenuItem small = new JMenuItem("1024x720");
+        JMenuItem medium = new JMenuItem("1920x1080");
+        JMenuItem big = new JMenuItem("2600x1400");
+        rezolution.add(small);
+        rezolution.add(medium);
+        rezolution.add(big);
+        display.add(rezolution);
+        settings.add(display);
+        menu.add(settings);
+
+
         open.addActionListener(this);
         close.addActionListener(this);
         save.addActionListener(this);
@@ -75,12 +95,22 @@ public class Test extends JFrame implements ActionListener{
         low.addActionListener(this);
         reset.addActionListener(this);
         about.addActionListener(this);
-
+        small.addActionListener(this);
+        medium.addActionListener(this);
+        big.addActionListener(this);
 
         add(jlab);
 
-
         setJMenuBar(menu);
+
+        JButton enterB = new JButton("Вход");
+        JButton exitB = new JButton("Выход");
+        enterB.setToolTipText("Вход в аккаунт");
+        exitB.setToolTipText("Выход из программы");
+
+        add(enterB);
+        add(exitB);
+
 
     }
 
