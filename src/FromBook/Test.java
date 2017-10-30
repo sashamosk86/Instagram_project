@@ -4,14 +4,12 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 
 public class Test extends JFrame implements ActionListener{
     private JLabel jlab = new JLabel();
+    private JTextField jtf = new JTextField(15);
 
     public Test() {
         setTitle("Menu Frame");
@@ -44,20 +42,25 @@ public class Test extends JFrame implements ActionListener{
         JMenu options = new JMenu("Options");
 
         JMenu colors = new JMenu("Colors");
-        JMenuItem red = new JMenuItem("Red");
-        JMenuItem green = new JMenuItem("Green");
-        JMenuItem blue = new JMenuItem("Blue");
+        JCheckBoxMenuItem red = new JCheckBoxMenuItem("Red");
+        JCheckBoxMenuItem green = new JCheckBoxMenuItem("Green");
+        JCheckBoxMenuItem blue = new JCheckBoxMenuItem("Blue");
         colors.add(red);
         colors.add(green);
         colors.add(blue);
         options.add(colors);
 
+
         JMenu priority = new JMenu("Priority");
-        JMenuItem high = new JMenuItem("High");
-        JMenuItem low = new JMenuItem("Low");
+        JRadioButtonMenuItem high = new JRadioButtonMenuItem("High",true);
+        JRadioButtonMenuItem low = new JRadioButtonMenuItem("Low");
         priority.add(high);
         priority.add(low);
         options.add(priority);
+
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(high);
+        bg.add(low);
 
         JMenuItem reset = new JMenuItem("Reset");
         options.add(reset);
@@ -84,6 +87,19 @@ public class Test extends JFrame implements ActionListener{
         menu.add(settings);
 
 
+
+
+        JPopupMenu jpm = new JPopupMenu();
+        JMenuItem cut = new JMenuItem("Cut");
+        JMenuItem copy = new JMenuItem("Copy");
+        JMenuItem paste = new JMenuItem("Paste");
+        jpm.add(cut);
+        jpm.add(copy);
+        jpm.add(paste);
+
+
+
+
         open.addActionListener(this);
         close.addActionListener(this);
         save.addActionListener(this);
@@ -98,6 +114,9 @@ public class Test extends JFrame implements ActionListener{
         small.addActionListener(this);
         medium.addActionListener(this);
         big.addActionListener(this);
+        cut.addActionListener(this);
+        copy.addActionListener(this);
+        paste.addActionListener(this);
 
         add(jlab);
 
@@ -110,6 +129,25 @@ public class Test extends JFrame implements ActionListener{
 
         add(enterB);
         add(exitB);
+
+
+        add(jtf);
+
+        jtf.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if(e.isPopupTrigger()){
+                    jpm.show(e.getComponent(),e.getX(),e.getY());
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()){
+                    jpm.show(e.getComponent(),e.getX(),e.getY());
+                }
+            }
+        });
 
 
     }
