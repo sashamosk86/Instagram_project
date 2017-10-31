@@ -10,6 +10,7 @@ import java.awt.event.*;
 public class Test extends JFrame implements ActionListener{
     private JLabel jlab = new JLabel();
     private JTextField jtf = new JTextField(15);
+    private JPanel jpn;
 
     public Test() {
         setTitle("Menu Frame");
@@ -122,13 +123,16 @@ public class Test extends JFrame implements ActionListener{
 
         setJMenuBar(menu);
 
+
+        jpn = new JPanel();
         JButton enterB = new JButton("Вход");
         JButton exitB = new JButton("Выход");
         enterB.setToolTipText("Вход в аккаунт");
         exitB.setToolTipText("Выход из программы");
 
-        add(enterB);
-        add(exitB);
+        jpn.add(enterB);
+        jpn.add(exitB);
+        add(jpn,BorderLayout.CENTER);
 
 
         add(jtf);
