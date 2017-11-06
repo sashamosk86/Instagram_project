@@ -1,6 +1,6 @@
 package Interface;
 
-import FromBook.Test;
+import FromBook.*;
 
 import javax.swing.*;
 
@@ -14,9 +14,17 @@ public class TestGUI {
                //new LoginWindow();
                //new CreateUserWindow();
                //new ExitWindow();
-               new Test();
+               //new Test();
                //new FlagButton();
                //new Toggle();
+
+               //new LoginW();
+
+               //new Calculator();
+
+               //new CheckBoxFrame();
+
+               new RadioButtonFrame();
            }
        });
 

@@ -11,6 +11,7 @@ public class Test extends JFrame implements ActionListener{
     private JLabel jlab = new JLabel();
     private JTextField jtf = new JTextField(15);
     private JPanel jpn;
+    private JPopupMenu jpm;
 
     public Test() {
         setTitle("Menu Frame");
@@ -90,7 +91,7 @@ public class Test extends JFrame implements ActionListener{
 
 
 
-        JPopupMenu jpm = new JPopupMenu();
+        jpm = new JPopupMenu();
         JMenuItem cut = new JMenuItem("Cut");
         JMenuItem copy = new JMenuItem("Copy");
         JMenuItem paste = new JMenuItem("Paste");

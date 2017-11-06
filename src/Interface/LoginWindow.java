@@ -10,24 +10,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class LoginWindow{
-    private JLabel jlab;
+public class LoginWindow extends JFrame{
+    private JPanel panel;
 
     private String login = "";
     private String password = "";
 
     public LoginWindow(){
 
-        JFrame jfrm = new JFrame("Instagram");
-        jfrm.setLayout(new FlowLayout());
-        jfrm.setSize(400,250);
-        jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jfrm.setVisible(true);
+        setTitle("Log in");
+        setLayout(new FlowLayout());
+        setSize(400,250);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
 
 
         JLabel jLoginLabel = new JLabel("Login:");
         JLabel jPasswordLabel = new JLabel("Password:");
-        jlab = new JLabel("Action");
+
 
         JTextField jLoginText = new JTextField(15);
         JTextField jPasswordText = new JTextField(15);
@@ -38,18 +38,19 @@ public class LoginWindow{
         JButton jCreateUserButton = new JButton("Create new user");
 
 
-        jfrm.add(jLoginLabel);
-        jfrm.add(jLoginText);
+        add(jLoginLabel);
+        add(jLoginText);
 
-        jfrm.add(jPasswordLabel);
-        jfrm.add(jPasswordText);
+        add(jPasswordLabel);
+        add(jPasswordText);
 
-        jfrm.add(jEnterButton);
-        jfrm.add(jExitButton);
+        add(jEnterButton);
+        add(jExitButton);
 
-        jfrm.add(jCreateUserButton);
+        add(jCreateUserButton);
 
-        jfrm.add(jlab);
+
+
 
 
         jLoginText.addActionListener(new ActionListener() {
@@ -71,7 +72,6 @@ public class LoginWindow{
         jEnterButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                jlab.setText("Loading...");
                 User user = new User();
                 UserDAO userImpl = new UserImplementation();
                 try {
@@ -85,7 +85,6 @@ public class LoginWindow{
         jExitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jlab.setText("Closing...");
                 System.out.println("Bye");
                 ExitWindow exitWindow = new ExitWindow();
             }
@@ -95,7 +94,6 @@ public class LoginWindow{
             @Override
             public void actionPerformed(ActionEvent e) {
                 CreateUserWindow createUserWindow = new CreateUserWindow();
-                jlab.setText("Go to create user...");
                 System.out.println("Ceate user");
             }
         });
