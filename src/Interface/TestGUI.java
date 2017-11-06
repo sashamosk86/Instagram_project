@@ -25,7 +25,9 @@ public class TestGUI {
                //new RadioButtonFrame();
                //new BorderFrame();
 
-               new ExitWindow();
+              // new ExitWindow();
+
+               new CUW();
            }
        });
 
