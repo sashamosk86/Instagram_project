@@ -5,36 +5,43 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static com.sun.javaws.ui.SplashScreen.hide;
+public class ExitWindow extends JFrame{
 
-public class ExitWindow{
+    private JLabel label;
+    private JPanel inPanel;
+    private JPanel outPanel;
 
     public ExitWindow(){
-        JFrame jfrm = new JFrame("");
-        jfrm.setLayout(new FlowLayout());
-        jfrm.setSize(250, 120);
-        jfrm.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jfrm.setVisible(true);
+        setSize(250,150);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
+        outPanel = new JPanel();
+        outPanel.setLayout(new GridLayout(2,1));
 
-        JLabel askText = new JLabel("Do you really want to exit?");
-        JButton yesButton = new JButton("Yes");
-        JButton noButton = new JButton("No");
+        label = new JLabel("Ви дійсно бажаєте вийти?",SwingConstants.CENTER);
+        outPanel.add(label, BorderLayout.CENTER);
 
-        jfrm.add(askText);
-        jfrm.add(yesButton);
-        jfrm.add(noButton);
+        inPanel = new JPanel();
+        JButton yes = new JButton("Так");
+        JButton no = new JButton("Ні");
+        inPanel.add(yes);
+        inPanel.add(no);
+        outPanel.add(inPanel,BorderLayout.SOUTH);
 
-        yesButton.addActionListener(new ActionListener() {
+        add(outPanel,BorderLayout.CENTER);
+
+
+        yes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                setVisible(false);
             }
         });
 
-        noButton.addActionListener(new ActionListener() {
+        no.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // hide();
+                //setVisible(false);
             }
         });
     }

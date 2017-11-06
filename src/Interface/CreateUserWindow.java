@@ -10,19 +10,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class CreateUserWindow {
+public class CreateUserWindow extends JFrame{
 
     private String login;
     private String password;
     private String firstName;
     private String lastName;
 
+    //boolean isActive = true;
+
    public CreateUserWindow(){
-       JFrame jfrm = new JFrame("Create user menu");
-       jfrm.setLayout(new FlowLayout());
-       jfrm.setSize(400,200);
-       jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       jfrm.setVisible(true);
+       setTitle("Create user menu");
+       setLayout(new FlowLayout());
+       setSize(400,200);
+       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       setVisible(true);
 
        JLabel loginLabel = new JLabel("Login: ");
        JLabel passwordLabel = new JLabel("Password: ");
@@ -37,17 +39,17 @@ public class CreateUserWindow {
        JButton saveButton = new JButton("Save");
        JButton cancelButton = new JButton("Cancel");
 
-       jfrm.add(loginLabel);
-       jfrm.add(loginField);
-       jfrm.add(passwordLabel);
-       jfrm.add(passwordField);
-       jfrm.add(firstNameLabel);
-       jfrm.add(firstNameField);
-       jfrm.add(lastNameLabel);
-       jfrm.add(lastNameField);
+       add(loginLabel);
+       add(loginField);
+       add(passwordLabel);
+       add(passwordField);
+       add(firstNameLabel);
+       add(firstNameField);
+       add(lastNameLabel);
+       add(lastNameField);
 
-       jfrm.add(saveButton);
-       jfrm.add(cancelButton);
+       add(saveButton);
+       add(cancelButton);
 
        loginField.addActionListener(new ActionListener() {
            @Override
@@ -102,9 +104,14 @@ public class CreateUserWindow {
            @Override
            public void actionPerformed(ActionEvent e) {
                ExitWindow exitWindow = new ExitWindow();
+
            }
        });
 
 
+   }
+
+   public void hideWindow(){
+       setVisible(false);
    }
 }

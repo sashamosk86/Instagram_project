@@ -1,7 +1,5 @@
 package Interface;
 
-import FromBook.*;
-
 import javax.swing.*;
 
 public class TestGUI {
@@ -24,7 +22,10 @@ public class TestGUI {
 
                //new CheckBoxFrame();
 
-               new RadioButtonFrame();
+               //new RadioButtonFrame();
+               //new BorderFrame();
+
+               new ExitWindow();
            }
        });
 
