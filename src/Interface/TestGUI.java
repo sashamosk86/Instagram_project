@@ -1,5 +1,7 @@
 package Interface;
 
+import FromBook.BagLayout;
+
 import javax.swing.*;
 
 public class TestGUI {
@@ -27,7 +29,9 @@ public class TestGUI {
 
               // new ExitWindow();
 
-               new CUW();
+               //new CUW();
+
+               new BagLayout();
            }
        });
 

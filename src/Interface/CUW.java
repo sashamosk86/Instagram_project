@@ -2,11 +2,16 @@ package Interface;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CUW extends JFrame {
 
     private JPanel northPanel;
     private JPanel southPanel;
+   // private JPopupMenu popupMenu;
 
     public  CUW(){
         setSize(350,200);
@@ -32,6 +37,16 @@ public class CUW extends JFrame {
         JTextField lastNameText = new JTextField(18);
         northPanel.add(lastNameText);
 
+        /*
+        popupMenu = new JPopupMenu();
+        JMenuItem copyItem = new JMenuItem("Копіювати");
+        JMenuItem pasteItem = new JMenuItem("Вставити");
+        JMenuItem cutItem = new JMenuItem("Вирізати");
+        popupMenu.add(copyItem);
+        popupMenu.add(pasteItem);
+        popupMenu.add(cutItem);
+       */
+
 
         southPanel = new JPanel();
         JButton saveButton = new JButton("Зберегти");
@@ -39,7 +54,7 @@ public class CUW extends JFrame {
         southPanel.add(saveButton);
         southPanel.add(cancelButton);
 
-        add(northPanel,BorderLayout.NORTH);
+        add(northPanel,BorderLayout.CENTER);
         add(southPanel,BorderLayout.SOUTH);
     }
 }
