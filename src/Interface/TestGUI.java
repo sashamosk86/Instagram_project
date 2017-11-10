@@ -1,6 +1,7 @@
 package Interface;
 
 import FromBook.BagLayout;
+import FromBook.CheckBoxFrame;
 
 import javax.swing.*;
 
@@ -11,7 +12,8 @@ public class TestGUI {
        SwingUtilities.invokeLater(new Runnable() {
            @Override
            public void run() {
-               //new LoginWindow();
+               new LoginWindow();
+               //new ErrorWindow();
                //new CreateUserWindow();
                //new ExitWindow();
                //new Test();
@@ -31,7 +33,7 @@ public class TestGUI {
 
                //new CUW();
 
-               new BagLayout();
+              // new BagLayout();
            }
        });
 

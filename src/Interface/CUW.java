@@ -11,7 +11,6 @@ public class CUW extends JFrame {
 
     private JPanel northPanel;
     private JPanel southPanel;
-   // private JPopupMenu popupMenu;
 
     public  CUW(){
         setSize(350,200);
@@ -36,17 +35,6 @@ public class CUW extends JFrame {
         northPanel.add(new JLabel("Прізвище:",SwingConstants.LEFT));
         JTextField lastNameText = new JTextField(18);
         northPanel.add(lastNameText);
-
-        /*
-        popupMenu = new JPopupMenu();
-        JMenuItem copyItem = new JMenuItem("Копіювати");
-        JMenuItem pasteItem = new JMenuItem("Вставити");
-        JMenuItem cutItem = new JMenuItem("Вирізати");
-        popupMenu.add(copyItem);
-        popupMenu.add(pasteItem);
-        popupMenu.add(cutItem);
-       */
-
 
         southPanel = new JPanel();
         JButton saveButton = new JButton("Зберегти");
