@@ -33,7 +33,7 @@ public class LoginWindow extends JFrame{
         northPanel.add(LoginText);
 
         northPanel.add(new JLabel("Пароль:",SwingConstants.LEFT));
-        JTextField PasswordText = new JTextField(15);
+        JPasswordField PasswordText = new JPasswordField(15);
         northPanel.add(PasswordText);
 
 
@@ -52,24 +52,9 @@ public class LoginWindow extends JFrame{
         add(northPanel,BorderLayout.NORTH);
         add(centerPpanel,BorderLayout.CENTER);
         add(southPpanel,BorderLayout.SOUTH);
-/*
 
-        LoginText.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                login = LoginText.getText();
-                System.out.println(login);
-            }
-        });
 
-        PasswordText.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                password = PasswordText.getText();
-                System.out.println(password);
-            }
-        });
-*/
+
         EnterButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,8 +67,7 @@ public class LoginWindow extends JFrame{
                 User user = new User();
                 UserDAO userImpl = new UserImplementation();
                 try {
-                    System.out.println(userImpl.getUserByLoginAndPassword(login,password));
-                    userImpl.getUserByLoginAndPassword(login,password);
+                    new MainWindow(userImpl.getUserByLoginAndPassword(login,password));
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                     //ErrorWindow errorWindow = new ErrorWindow();

@@ -13,6 +13,7 @@ public class TestGUI {
            @Override
            public void run() {
                new LoginWindow();
+               //new MainWindow();
                //new ErrorWindow();
                //new CreateUserWindow();
                //new ExitWindow();
