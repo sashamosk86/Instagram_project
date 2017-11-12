@@ -1,6 +1,7 @@
 package Interface;
 
 import FromBook.BagLayout;
+import FromBook.BorderFrame;
 import FromBook.CheckBoxFrame;
 
 import javax.swing.*;

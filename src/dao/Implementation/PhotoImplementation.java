@@ -65,10 +65,10 @@ public class PhotoImplementation extends DBConnection implements PhotoDAO{
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Photo photo = new Photo();
-                photo.setId(resultSet.getLong("ID"));
-                photo.setName(resultSet.getString("NAME"));
+                //photo.setId(resultSet.getLong("ID"));
+                //photo.setName(resultSet.getString("NAME"));
                 photo.setFile(resultSet.getBytes("FILE"));
-                photo.setUserId(resultSet.getLong("USER_ID"));
+                //photo.setUserId(resultSet.getLong("USER_ID"));
 
                 photoList.add(photo);
             }

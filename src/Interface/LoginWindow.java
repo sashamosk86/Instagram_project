@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginWindow extends JFrame{
@@ -68,9 +69,11 @@ public class LoginWindow extends JFrame{
                 UserDAO userImpl = new UserImplementation();
                 try {
                     new MainWindow(userImpl.getUserByLoginAndPassword(login,password));
+                    setVisible(false);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                     //ErrorWindow errorWindow = new ErrorWindow();
+
                 }
             }
         });
