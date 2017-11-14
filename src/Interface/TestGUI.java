@@ -13,7 +13,9 @@ public class TestGUI {
        SwingUtilities.invokeLater(new Runnable() {
            @Override
            public void run() {
-               new LoginWindow();
+               //new LoginWindow();
+               //new Login();
+               new Create();
                //new MainWindow();
                //new ErrorWindow();
                //new CreateUserWindow();
