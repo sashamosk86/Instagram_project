@@ -1,4 +1,4 @@
-package ITEA_2;
+package itea.day1;
 
 public class MainInterface{
     public static void main(String[] args) {

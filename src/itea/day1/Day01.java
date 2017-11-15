@@ -1,4 +1,4 @@
-package ITEA_2;
+package itea.day1;
 
 import java.io.*;
 import java.text.NumberFormat;

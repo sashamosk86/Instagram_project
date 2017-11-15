@@ -1,4 +1,4 @@
-package ITEA_2;
+package itea.day1;
 
 import javax.swing.*;
 import java.awt.*;
