@@ -15,7 +15,9 @@ public class TestGUI {
            public void run() {
                //new LoginWindow();
                //new Login();
-               new Create();
+               //new Create();
+               new TesGrid();
+
                //new MainWindow();
                //new ErrorWindow();
                //new CreateUserWindow();
