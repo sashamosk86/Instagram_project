@@ -2,10 +2,8 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$USER_HOME$/Desktop/Java">
-      <sourceFolder url="file://$USER_HOME$/Desktop/Java/mvn/PrimoCollect/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/Desktop/Java/Instagram_project/src" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/Desktop/Java/mvn/PrimoCollect/src/test/java" isTestSource="false" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

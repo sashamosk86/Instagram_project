@@ -3,7 +3,7 @@ package domain;
 /**
  * Created by Sasha on 03.10.2017.
  */
-public class UserFriend{
+public class UserFriend extends User {
 
     private long id;
     private long userMasterId;

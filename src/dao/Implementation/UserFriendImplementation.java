@@ -2,7 +2,7 @@ package dao.Implementation;
 
 import Connection.DBConnection;
 import dao.UserFriendDAO;
-import domain.UserFriend;
+import domain.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,13 +40,17 @@ public class UserFriendImplementation extends DBConnection implements UserFriend
     }
 
     @Override
-    public List<UserFriend> getAllFriends(long masterId) throws SQLException {
-        List<UserFriend> userFriends = new ArrayList<>();
+    public List<User> getAllIdFriends(long masterId) throws SQLException {
+        List<User> users = new ArrayList<>();
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        sql = "SELECT ID, USER_MASTER_ID, USER_SLAVE_ID FROM USER_FRIEND WHERE USER_MASTER_ID = ?";
+
+        sql = "SELECT UF.ID, U.LOGIN, U.PASSWORD, U.FIRST_NAME, U.LAST_NAME\n" +
+                "FROM USER_FRIEND UF\n" +
+                " INNER JOIN USER U ON U.ID=UF.USER_SLAVE_ID\n" +
+                "WHERE UF.USER_MASTER_ID = ?";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -54,12 +58,15 @@ public class UserFriendImplementation extends DBConnection implements UserFriend
 
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                UserFriend userFriend = new UserFriend();
-                userFriend.setId(resultSet.getLong("ID"));
-                userFriend.setUserMasterId(resultSet.getLong("USER_MASTER_ID"));
-                userFriend.setUserSlaveId(resultSet.getLong("USER_SLAVE_ID"));
+                User user = new User();
 
-                userFriends.add(userFriend);
+                user.setId(resultSet.getLong("ID"));
+                user.setLogin(resultSet.getString("LOGIN"));
+                user.setPassword(resultSet.getString("PASSWORD"));
+                user.setFirstName(resultSet.getString("FIRST_NAME"));
+                user.setLastName(resultSet.getString("LAST_NAME"));
+
+                users.add(user);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,7 +81,7 @@ public class UserFriendImplementation extends DBConnection implements UserFriend
                 connection.close();
             }
         }
-        return userFriends;
+        return users;
     }
 
     @Override

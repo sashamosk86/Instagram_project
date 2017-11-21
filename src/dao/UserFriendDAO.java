@@ -1,6 +1,6 @@
 package dao;
 
-import domain.UserFriend;
+import domain.User;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,7 +13,7 @@ public interface UserFriendDAO {
     void addFriend(long masterId, long slaveId) throws SQLException;
 
     //read
-    List<UserFriend> getAllFriends(long masterId) throws SQLException;
+    List<User> getAllIdFriends(long masterId) throws SQLException;
 
     //update
 

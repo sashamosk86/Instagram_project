@@ -32,7 +32,7 @@ public class UserFriendTest {
 /*
         userFriend.setUserMasterId(1);
         try {
-            System.out.println(userFriendService.getAllFriends(userFriend.getUserMasterId()));
+            System.out.println(userFriendService.getAllIdFriends(userFriend.getUserMasterId()));
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -68,7 +68,8 @@ public class LoginWindow extends JFrame{
                 User user = new User();
                 UserDAO userImpl = new UserImplementation();
                 try {
-                    new MainWindow(userImpl.getUserByLoginAndPassword(login,password));
+                    //new MainWindow(userImpl.getUserByLoginAndPassword(login,password));
+                    new TesGrid(userImpl.getUserByLoginAndPassword(login,password));
                     setVisible(false);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
