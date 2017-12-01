@@ -1,12 +1,16 @@
 package Interface;
 
 import FromBook.CheckBoxFrame;
+import dao.Implementation.UserImplementation;
+import dao.UserDAO;
+import domain.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
-public class Login extends JFrame implements ActionListener{
+public class Login extends JFrame{
 
     private JPanel panel;
     private JButton enterButton;
@@ -42,7 +46,7 @@ public class Login extends JFrame implements ActionListener{
 
         enterButton = new JButton("Вхід");
         enterButton.setBounds(10,80,80,25);
-        enterButton.addActionListener(this);
+        //enterButton.addActionListener(this);
         panel.add(enterButton);
 
         ImageIcon ukrIcon = new ImageIcon("ukraine.png");
@@ -57,22 +61,62 @@ public class Login extends JFrame implements ActionListener{
 
         registerButton = new JButton("Реєстрація");
         registerButton.setBounds(160,80,100,25);
-        registerButton.addActionListener(this);
+        //registerButton.addActionListener(this);
         panel.add(registerButton);
 
         add(panel);
 
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String command = e.getActionCommand();
-        if (command.equals("Вхід")){
-            System.out.println("Entering");
-        }
-        if (command.equals("Реєстрація")){
-            System.out.println("Registering");
-        }
-        System.out.println("----");
+        enterButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String login = loginText.getText();
+                System.out.println(login);
+
+                String password = passwordText.getText();
+                System.out.println(password);
+
+                User user = new User();
+                UserDAO userImpl = new UserImplementation();
+                try {
+                    //new MainWindow(userImpl.getUserByLoginAndPassword(login,password));
+                    new MainWindow(userImpl.getUserByLoginAndPassword(login,password));
+                    setVisible(false);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                    //ErrorWindow errorWindow = new ErrorWindow();
+
+                }
+            }
+        });
+//
+//        exitButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                System.out.println("Bye");
+//                ExitWindow exitWindow = new ExitWindow();
+//            }
+//        });
+
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreateUserWindow createUserWindow = new CreateUserWindow();
+                System.out.println("Ceate user");
+            }
+        });
+
     }
+//
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        String command = e.getActionCommand();
+//        if (command.equals("Вхід")){
+//            System.out.println("Entering");
+//        }
+//        if (command.equals("Реєстрація")){
+//            System.out.println("Registering");
+//        }
+//        System.out.println("----");
+//    }
 }

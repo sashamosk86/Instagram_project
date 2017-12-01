@@ -33,7 +33,7 @@ public class MainWindow extends JFrame {
 
     public MainWindow(User user){
         setSize(700,900);
-        setVisible(true);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.user = user;
@@ -51,26 +51,25 @@ public class MainWindow extends JFrame {
 
         northPanel = new JPanel();
         southPanel = new JPanel();
-        northPanel.setLayout(new GridLayout(2,4));
+        northPanel.setLayout(new GridLayout(1,4));
         // ICONS
+        ImageIcon informationIcon = new ImageIcon("Male_128.png");
+        JLabel informationButton = new JLabel(informationIcon);
+        northPanel.add(informationButton);
+
         ImageIcon homeIcon = new ImageIcon("Home_48.png");
-        ImageIcon informationIcon = new ImageIcon("Information_48.png");
         ImageIcon addPhotoIcon = new ImageIcon("Add_48.png");
         ImageIcon friendsIcon = new ImageIcon("Affiliate_48.png");
         // ICON_BUTTONS
-        JButton homePageButton = new JButton(homeIcon);
-        JButton informationButton = new JButton(informationIcon);
-        JButton addPhotoButton = new JButton(addPhotoIcon);
-        JButton friendsButton = new JButton(friendsIcon);
+
+        JLabel homePageButton = new JLabel(homeIcon);
+        JLabel addPhotoButton = new JLabel(addPhotoIcon);
+        JLabel friendsButton = new JLabel(friendsIcon);
 
         northPanel.add(homePageButton);
-        northPanel.add(informationButton);
         northPanel.add(addPhotoButton);
         northPanel.add(friendsButton);
-        northPanel.add(new JLabel("Додому",SwingConstants.CENTER));
-        northPanel.add(new JLabel("Інформація",SwingConstants.CENTER));
-        northPanel.add(new JLabel("Додати фото",SwingConstants.CENTER));
-        northPanel.add(new JLabel("Друзі",SwingConstants.CENTER));
+
 
         Border raised_1 = BorderFactory.createRaisedBevelBorder();
         Border title_1 = BorderFactory.createTitledBorder(raised_1,"Інформація");
@@ -83,18 +82,8 @@ public class MainWindow extends JFrame {
         southPanel.setBorder(title_2);
         add(southPanel,BorderLayout.CENTER);
 
-        try {
-            System.out.println(photoImpl.getAllUserPhoto(user.getId()));
 
 
-
-// TODO create frame components....
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
+        setVisible(true);
     }
 }
