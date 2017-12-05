@@ -7,7 +7,7 @@ public class TestCreateUser extends JFrame {
     //JPanel jpanel;
 
     public TestCreateUser(){
-        setTitle("Create user");
+        setTitle("CreateUserWindow user");
         setSize(300,200);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
@@ -22,7 +22,7 @@ public class TestCreateUser extends JFrame {
 
 
         // SOUTH
-        JButton createButton = new JButton("Create");
+        JButton createButton = new JButton("CreateUserWindow");
         JButton cancelButton = new JButton("Cancel");
         JPanel jpanelS = new JPanel();
         jpanelS.add(createButton);

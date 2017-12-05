@@ -34,14 +34,19 @@ public class ExitWindow extends JFrame{
         yes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+
                 setVisible(false);
+                CreateUserWindow createUserWindow = new CreateUserWindow();
+                createUserWindow.setVisible(false);
+
             }
         });
 
         no.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //setVisible(false);
+                setVisible(false);
             }
         });
     }

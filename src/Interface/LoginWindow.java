@@ -5,70 +5,79 @@ import dao.UserDAO;
 import domain.User;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginWindow extends JFrame{
-    private JPanel northPanel;
-    private JPanel centerPpanel;
-    private JPanel southPpanel;
 
-    private String login = "";
-    private String password = "";
+    private JPanel panel;
+    private JButton enterButton;
+    private JButton registerButton;
 
     public LoginWindow(){
-
-        setTitle("Вхід до системи");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Вікно входу");
+        setSize(280,150);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
+        panel = new JPanel();
+        panel.setLayout(null);
 
-        northPanel = new JPanel();
-        northPanel.setLayout(new GridLayout(2,2));
+        JLabel loginLabel = new JLabel("Логін:");
+        loginLabel.setBounds(10,10,80,25);
+        panel.add(loginLabel);
 
-        northPanel.add(new JLabel("Логін:",SwingConstants.LEFT));
-        JTextField LoginText = new JTextField(15);
-        northPanel.add(LoginText);
+        JTextField loginText = new JTextField(20);
+        loginText.setBounds(100,10,160,25);
+        panel.add(loginText);
 
-        northPanel.add(new JLabel("Пароль:",SwingConstants.LEFT));
-        JPasswordField PasswordText = new JPasswordField(15);
-        northPanel.add(PasswordText);
+        JLabel passwordLabel = new JLabel("Пароль:");
+        passwordLabel.setBounds(10,40,80,25);
+        panel.add(passwordLabel);
 
-
-        centerPpanel = new JPanel();
-        JButton EnterButton = new JButton("Вхід");
-        JButton ExitButton = new JButton("Відміна");
-        centerPpanel.add(EnterButton);
-        centerPpanel.add(ExitButton);
-
-
-        southPpanel = new JPanel();
-        JButton CreateUserButton = new JButton("Зареєструватися");
-        southPpanel.add(CreateUserButton);
+        JPasswordField passwordText = new JPasswordField(20);
+        passwordText.setBounds(100,40,160,25);
+        panel.add(passwordText);
 
 
-        add(northPanel,BorderLayout.NORTH);
-        add(centerPpanel,BorderLayout.CENTER);
-        add(southPpanel,BorderLayout.SOUTH);
+        enterButton = new JButton("Вхід");
+        enterButton.setBounds(10,80,80,25);
+        //enterButton.addActionListener(this);
+        panel.add(enterButton);
+
+        ImageIcon ukrIcon = new ImageIcon("ukraine.png");
+        ImageIcon usaIcon = new ImageIcon("united-states.png");
+        ImageIcon rusIcon = new ImageIcon("russia.png");
+        JComboBox<ImageIcon> languageBox = new JComboBox<ImageIcon>();
+        languageBox.addItem(ukrIcon);
+        languageBox.addItem(usaIcon);
+        languageBox.addItem(rusIcon);
+        languageBox.setBounds(100,80,50,25);
+        panel.add(languageBox);
+
+        registerButton = new JButton("Реєстрація");
+        registerButton.setBounds(160,80,100,25);
+        //registerButton.addActionListener(this);
+        panel.add(registerButton);
+
+        add(panel);
 
 
-
-        EnterButton.addActionListener(new ActionListener(){
+        enterButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                login = LoginText.getText();
+                String login = loginText.getText();
                 System.out.println(login);
 
-                password = PasswordText.getText();
+                String password = passwordText.getText();
                 System.out.println(password);
 
                 User user = new User();
                 UserDAO userImpl = new UserImplementation();
                 try {
-                    //new MainWindow(userImpl.getUserByLoginAndPassword(login,password));
                     new MainWindow(userImpl.getUserByLoginAndPassword(login,password));
                     setVisible(false);
                 } catch (SQLException e1) {
@@ -79,23 +88,12 @@ public class LoginWindow extends JFrame{
             }
         });
 
-        ExitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Bye");
-                ExitWindow exitWindow = new ExitWindow();
-            }
-        });
-
-        CreateUserButton.addActionListener(new ActionListener() {
+        registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 CreateUserWindow createUserWindow = new CreateUserWindow();
-                System.out.println("Ceate user");
             }
         });
-
-        pack();
 
     }
 

@@ -1,86 +1,95 @@
 package Interface;
 
 import dao.Implementation.PhotoCommentImplementation;
-import dao.Implementation.PhotoImplementation;
 import dao.Implementation.PhotoLikeImplementation;
+import dao.Implementation.UserFriendImplementation;
 import dao.Implementation.UserImplementation;
 import dao.PhotoCommentDAO;
-import dao.PhotoDAO;
 import dao.PhotoLikeDAO;
 import dao.UserDAO;
-import domain.Photo;
+import dao.UserFriendDAO;
 import domain.PhotoComment;
 import domain.PhotoLike;
 import domain.User;
+import domain.UserFriend;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 
-public class MainWindow extends JFrame {
-    private User user;
+public class MainWindow extends JFrame{
 
-    private JPanel northPanel;
-    private JPanel southPanel;
-    Container cp = getContentPane();
+    User user;
+
+    private JPanel mainPanel;
+    private JPanel leftPanel;
+    private JPanel rightPanel;
+
+    private JScrollPane scrollPane;
+
+    private JSplitPane splitPane1;
+
+
+
+
+
 
 
     public MainWindow(User user){
-        setSize(700,900);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         this.user = user;
-        UserDAO userImpl = new UserImplementation();
+        UserDAO userDAO = new UserImplementation();
 
-        Photo photo = new Photo();
-        PhotoDAO photoImpl = new PhotoImplementation();
+        UserFriend userFriend = new UserFriend();
+        UserFriendDAO userFriendDAO = new UserFriendImplementation();
 
         PhotoLike photoLike = new PhotoLike();
-        PhotoLikeDAO photoLikeImpl = new PhotoLikeImplementation();
+        PhotoLikeDAO photoLikeDAO = new PhotoLikeImplementation();
 
         PhotoComment photoComment = new PhotoComment();
-        PhotoCommentDAO photoCommentImpl = new PhotoCommentImplementation();
+        PhotoCommentDAO photoCommentDAO = new PhotoCommentImplementation();
+
+        int counter = 0;
 
 
-        northPanel = new JPanel();
-        southPanel = new JPanel();
-        northPanel.setLayout(new GridLayout(1,4));
-        // ICONS
-        ImageIcon informationIcon = new ImageIcon("Male_128.png");
-        JLabel informationButton = new JLabel(informationIcon);
-        northPanel.add(informationButton);
+        setSize(900,700);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-        ImageIcon homeIcon = new ImageIcon("Home_48.png");
-        ImageIcon addPhotoIcon = new ImageIcon("Add_48.png");
-        ImageIcon friendsIcon = new ImageIcon("Affiliate_48.png");
-        // ICON_BUTTONS
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(1,1));
+        add(mainPanel);
 
-        JLabel homePageButton = new JLabel(homeIcon);
-        JLabel addPhotoButton = new JLabel(addPhotoIcon);
-        JLabel friendsButton = new JLabel(friendsIcon);
+        leftPanel = new JPanel();
+        rightPanel = new JPanel();
+        rightPanel.setLayout(new GridLayout(2,1));
+        Border etched = BorderFactory.createEtchedBorder();
+        Border title = BorderFactory.createTitledBorder(etched,"Friends");
+        rightPanel.setBorder(title);
+        scrollPane = new JScrollPane(rightPanel);
+        splitPane1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,leftPanel,rightPanel);
+        splitPane1.setResizeWeight(0.75);
+        add(splitPane1);
 
-        northPanel.add(homePageButton);
-        northPanel.add(addPhotoButton);
-        northPanel.add(friendsButton);
+        try {
+           // final DefaultListModel listModel = new DefaultListModel();
+            JLabel jLabel;
 
+            for (User u: userFriendDAO.getAllIdFriends(user.getId())) {
+                System.out.println(u.getFirstName() + " " + u.getLastName());
+                jLabel = new JLabel(u.getFirstName() + " " + u.getLastName());
+                rightPanel.add(jLabel);
+               // listModel.addElement(String.valueOf(u.getFirstName() + " " + u.getLastName() + " (" + u.getLogin() + ")"));
+                //JList list = new JList(listModel);
 
-        Border raised_1 = BorderFactory.createRaisedBevelBorder();
-        Border title_1 = BorderFactory.createTitledBorder(raised_1,"Інформація");
-        northPanel.setBorder(title_1);
-        add(northPanel, BorderLayout.NORTH);
+                //JLabel label = new JLabel(String.valueOf(u.getFirstName() + " " + u.getLastName() + " (" + u.getLogin() + ")"));
 
+                //rightPanel.add(new JScrollPane(list));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        Border raised_2 = BorderFactory.createRaisedBevelBorder();
-        Border title_2 = BorderFactory.createTitledBorder(raised_2,"Фото");
-        southPanel.setBorder(title_2);
-        add(southPanel,BorderLayout.CENTER);
 
 
 

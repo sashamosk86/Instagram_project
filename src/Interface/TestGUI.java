@@ -1,9 +1,5 @@
 package Interface;
 
-import FromBook.BagLayout;
-import FromBook.BorderFrame;
-import FromBook.CheckBoxFrame;
-
 import javax.swing.*;
 
 public class TestGUI {
@@ -13,14 +9,12 @@ public class TestGUI {
        SwingUtilities.invokeLater(new Runnable() {
            @Override
            public void run() {
-               //new LoginWindow();
-               new Login();
-               //new Create();
-               //new TesGrid();
-
-               //new MainWindow();
-               //new ErrorWindow();
+               new LoginWindow();
                //new CreateUserWindow();
+               //new MainWindow();
+
+
+               //new ErrorWindow();
                //new ExitWindow();
                //new Test();
                //new FlagButton();

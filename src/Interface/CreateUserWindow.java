@@ -5,113 +5,110 @@ import dao.UserDAO;
 import domain.User;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class CreateUserWindow extends JFrame{
 
-    private String login;
-    private String password;
-    private String firstName;
-    private String lastName;
+    private JPanel panel;
+    private JButton enterButton;
+    private JButton cancelButton;
 
-    //boolean isActive = true;
-
-   public CreateUserWindow(){
-       setTitle("Create user menu");
-       setLayout(new FlowLayout());
-       setSize(400,200);
-       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       setVisible(true);
-
-       JLabel loginLabel = new JLabel("Login: ");
-       JLabel passwordLabel = new JLabel("Password: ");
-       JLabel firstNameLabel = new JLabel("First name: ");
-       JLabel lastNameLabel = new JLabel("Last name: ");
-
-       JTextField loginField = new JTextField(15);
-       JTextField passwordField = new JTextField(15);
-       JTextField firstNameField = new JTextField(15);
-       JTextField lastNameField = new JTextField(15);
-
-       JButton saveButton = new JButton("Save");
-       JButton cancelButton = new JButton("Cancel");
-
-       add(loginLabel);
-       add(loginField);
-       add(passwordLabel);
-       add(passwordField);
-       add(firstNameLabel);
-       add(firstNameField);
-       add(lastNameLabel);
-       add(lastNameField);
-
-       add(saveButton);
-       add(cancelButton);
-
-       loginField.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               login = loginField.getText();
-           }
-       });
-
-       passwordField.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               password = passwordField.getText();
-           }
-       });
-
-       firstNameField.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               firstName = firstNameField.getText();
-           }
-       });
-
-       lastNameField.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               lastName = lastNameField.getText();
-           }
-       });
-
-       saveButton.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               User user = new User();
-               UserDAO userImp = new UserImplementation();
-
-               user.setLogin(login);
-               user.setPassword(password);
-               user.setFirstName(firstName);
-               user.setLastName(lastName);
-
-               //2System.out.println("LOGIN:  " + login + ", PASSWORD: " + password + " ,FIRST_NAME: " + firstName + ", LAST_NAME: " + lastName + " ");
-
-               try {
-                   userImp.addUser(user);
-               } catch (SQLException e1) {
-                   e1.printStackTrace();
-               }
-           }
-       });
-
-       cancelButton.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               ExitWindow exitWindow = new ExitWindow();
-
-           }
-       });
+    public CreateUserWindow(){
+        setTitle("Реєстрація");
+        setSize(280,225);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
-   }
+        panel = new JPanel();
+        panel.setLayout(null);
 
-   public void hideWindow(){
-       setVisible(false);
-   }
+        JLabel loginLabel = new JLabel("Логін");
+        loginLabel.setBounds(10,10,80,25);
+        panel.add(loginLabel);
+
+        JTextField loginText = new JTextField(20);
+        loginText.setBounds(100,10,160,25);
+        panel.add(loginText);
+
+        JLabel passwordLabel = new JLabel("Пароль");
+        passwordLabel.setBounds(10,40,80,25);
+        panel.add(passwordLabel);
+
+        JTextField passwordText = new JTextField(20);
+        passwordText.setBounds(100,40,160,25);
+        panel.add(passwordText);
+
+        JLabel firstNameLabel = new JLabel("Ім'я");
+        firstNameLabel.setBounds(10,70,80,25);
+        panel.add(firstNameLabel);
+
+        JTextField firstNameText = new JTextField(20);
+        firstNameText.setBounds(100,70,160,25);
+        panel.add(firstNameText);
+
+        JLabel lastNameLabel = new JLabel("Прізвище");
+        lastNameLabel.setBounds(10,100,80,25);
+        panel.add(lastNameLabel);
+
+        JTextField lastNameText = new JTextField(20);
+        lastNameText.setBounds(100,100,160,25);
+        panel.add(lastNameText);
+
+
+        enterButton = new JButton("Так");
+        enterButton.setBounds(30,150,80,25);
+        panel.add(enterButton);
+
+        cancelButton = new JButton("Відміна");
+        cancelButton.setBounds(140,150,100,25);
+        panel.add(cancelButton);
+
+        add(panel);
+
+
+        enterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String login = loginText.getText();
+                String password = passwordText.getText();
+                String firstName = firstNameText.getText();
+                String lastName = lastNameText.getText();
+
+                User user = new User();
+                UserDAO userImp = new UserImplementation();
+
+                user.setLogin(login);
+                user.setPassword(password);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+
+//                if (login == "" || password == "" || firstName == "" || lastName == ""){
+//
+//                }
+
+                try {
+                    userImp.addUser(user);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ExitWindow exitWindow = new ExitWindow();
+
+            }
+        });
+
+
+        setVisible(true);
+
+    }
+
 }
