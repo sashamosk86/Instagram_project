@@ -5,66 +5,48 @@ import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.util.*;
 
-public class TestClass implements Cloneable, Comparable, Iterable{
+class Person{
+    private int age;
 
-    int age;
-    String name;
-
-    public TestClass(int age, String name){
-        this.age = age;
-        this.name = name;
+    public int getAge() {
+        return age;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
-    public void getSum1(){
-        System.out.println(2);
+    public Person(int age) {
+        this.age = age;
     }
 
     @Override
     public String toString() {
-        return "TestClass{" +
+        return "Person{" +
                 "age=" + age +
-                ", name='" + name + '\'' +
                 '}';
     }
+}
+
+class ComparePerson implements Comparator<Person>{
+
+    @Override
+    public int compare(Person o1, Person o2) {
+        return o1.getAge() - o2.getAge();
+    }
+}
+public class TestClass {
 
     public static void main(String[] args) throws IllegalAccessException, IOException, CloneNotSupportedException {
-        ArrayList<Integer> pq = new ArrayList<Integer>();
-
-        for (int i = 0; i < 10; i++) {
-            pq.add((int)(Math.random()*100));
+        Set set = new TreeSet(new ComparePerson());
+        set.add(new Person(3));
+        set.add(new Person(1));
+        set.add(new Person(5));
+        set.add(new Person(2));
+        for (Object o: set) {
+            System.out.println(o);
         }
-
-
-        for (int i: pq) {
-            System.out.print(i + " + ");
-        }
-
-        System.out.print(" = ");
-
-        int sum = 0;
-        for (int i: pq) {
-            sum +=i;
-        }
-        System.out.println(sum);
-
-
-
-
     }
 
-
-    @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
-
-    @Override
-    public Iterator iterator() {
-        return null;
-    }
 }
 
