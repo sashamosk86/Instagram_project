@@ -1,52 +1,70 @@
 package FromBook;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.time.LocalDate;
-import java.util.*;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
 
-class Person{
-    private int age;
+public class TestClass extends JFrame{
+    JPanel butonPanel;
+    JPanel demoPanel;
+    ButtonGroup buttonGroup;
 
-    public int getAge() {
-        return age;
+    TestClass() {
+        setTitle("Window");
+        //setLayout(new BorderLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        butonPanel = new JPanel();
+        demoPanel = new JPanel();
+        buttonGroup = new ButtonGroup();
+
+        addButton("Lowered Bevel",BorderFactory.createLoweredBevelBorder());
+        addButton("Raised Bevel",BorderFactory.createRaisedBevelBorder());
+        addButton("Etched",BorderFactory.createEtchedBorder());
+        addButton("Line",BorderFactory.createLineBorder(Color.BLUE));
+        addButton("Matte",BorderFactory.createMatteBorder(20,5,5,5,Color.BLUE));
+        addButton("Empty",BorderFactory.createEmptyBorder());
+
+        Border etched = BorderFactory.createEtchedBorder();
+        Border title = BorderFactory.createTitledBorder(etched,"Border types");
+        butonPanel.setBorder(title);
+
+        setLayout(new GridLayout(2,1));
+        add(butonPanel);
+        add(demoPanel);
+
+        pack();
+        setVisible(true);
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    private void addButton(String name, Border border) {
+        JRadioButton button = new JRadioButton(name);
+        buttonGroup.add(button);
+        butonPanel.add(button);
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                demoPanel.setBorder(border);
+            }
+        });
     }
 
-    public Person(int age) {
-        this.age = age;
+
+    public static void main(String[] args) throws IOException {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new TestClass();
+            }
+        });
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "age=" + age +
-                '}';
-    }
-}
-
-class ComparePerson implements Comparator<Person>{
-
-    @Override
-    public int compare(Person o1, Person o2) {
-        return o1.getAge() - o2.getAge();
-    }
-}
-public class TestClass {
-
-    public static void main(String[] args) throws IllegalAccessException, IOException, CloneNotSupportedException {
-        Set set = new TreeSet(new ComparePerson());
-        set.add(new Person(3));
-        set.add(new Person(1));
-        set.add(new Person(5));
-        set.add(new Person(2));
-        for (Object o: set) {
-            System.out.println(o);
-        }
-    }
 
 }
 

@@ -9,13 +9,13 @@ public class TestGUI {
        SwingUtilities.invokeLater(new Runnable() {
            @Override
            public void run() {
-               new LoginWindow();
+               new LoginWindow("Вікно входу").setVisible(true);
                //new CreateUserWindow();
                //new MainWindow();
 
 
-               //new ErrorWindow();
-               //new ExitWindow();
+              // new ErrorWindow("Помилка пошуку");
+               //new ExitWindow("exit");
                //new Test();
                //new FlagButton();
                //new Toggle();

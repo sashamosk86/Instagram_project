@@ -93,6 +93,6 @@ public class MainWindow extends JFrame{
 
 
 
-        setVisible(true);
+        //setVisible(true);
     }
 }

@@ -7,38 +7,41 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ErrorWindow extends JFrame {
+public class ErrorWindow extends JFrame implements ActionListener {
 
-    private JPanel northPanel;
-    private JPanel southPanel;
-    private  JButton button;
+    private JPanel panel;
+    private JLabel label;
+    private JButton button;
 
-    public ErrorWindow(){
-        setTitle("Помилка входу");
-        setSize(300,100);
-        setVisible(true);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    public ErrorWindow(String name){
+        this.setTitle(name);
+        this.setSize(250,150);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
-        northPanel = new JPanel();
-        northPanel.add(new JLabel("Кокристувач не знайдений!",SwingConstants.CENTER));
+        panel = new JPanel();
+        panel.setLayout(null);
 
-        ActionListener listEvent = new ActionListEvent();
+        label = new JLabel("Кокристувач не знайдений!");
+        label.setBounds(45,20,200,25);
+        panel.add(label);
 
-        southPanel = new JPanel();
         button = new JButton("Ок");
-        button.addActionListener(listEvent);
-        southPanel.add(button);
+        button.setBounds(85,70,80,25);
+        button.setActionCommand("ok");
+        button.addActionListener(this);
+        panel.add(button);
 
 
-        add(northPanel, BorderLayout.NORTH);
-        add(southPanel, BorderLayout.CENTER);
+        this.add(panel);
     }
 
-    public class ActionListEvent implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            setVisible(false);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("ok")){
+            this.setVisible(false);
         }
     }
 }
