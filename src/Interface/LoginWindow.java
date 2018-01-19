@@ -5,10 +5,13 @@ import dao.UserDAO;
 import domain.User;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.TreeMap;
 
 public class LoginWindow extends JFrame implements ActionListener{
@@ -18,18 +21,45 @@ public class LoginWindow extends JFrame implements ActionListener{
     private JTextField loginText, passwordText;
     private JButton enterButton, registerButton, exitButton;
 
+
+
     public LoginWindow(String name){
         this.setTitle(name);
         this.setSize(320,190);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+/*
+        UIManager.LookAndFeelInfo[] lookAndFeelInfos = UIManager.getInstalledLookAndFeels();
+        for (UIManager.LookAndFeelInfo l: lookAndFeelInfos) {
+            System.out.println(l.getName());
+            System.out.println(l.getClassName());
 
+//            Metal
+//            javax.swing.plaf.metal.MetalLookAndFeel
+//                    Nimbus
+//            javax.swing.plaf.nimbus.NimbusLookAndFeel
+//            CDE/Motif
+//            com.sun.java.swing.plaf.motif.MotifLookAndFeel
+//                    Windows
+//            com.sun.java.swing.plaf.windows.WindowsLookAndFeel
+//            Windows Classic
+//            com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel
+
+
+        }
+
+*/
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         panel = new JPanel();
         panel.setLayout(null);
 
-        loginLabel = new JLabel("Логін:");
+        loginLabel = new JLabel("Логін: ");
         loginLabel.setBounds(10,10,80,25);
         panel.add(loginLabel);
 
@@ -37,7 +67,7 @@ public class LoginWindow extends JFrame implements ActionListener{
         loginText.setBounds(100,10,200,25);
         panel.add(loginText);
 
-        passwordLabel = new JLabel("Пароль:");
+        passwordLabel = new JLabel("Пароль: ");
         passwordLabel.setBounds(10,40,80,25);
         panel.add(passwordLabel);
 
@@ -46,15 +76,14 @@ public class LoginWindow extends JFrame implements ActionListener{
         panel.add(passwordText);
 
 
-        ImageIcon ukrIcon = new ImageIcon("ukraine.png");
-        ImageIcon usaIcon = new ImageIcon("united-states.png");
-        ImageIcon rusIcon = new ImageIcon("russia.png");
-//        Map<String,ImageIcon> languageMap = new TreeMap<>();
-//        languageMap.put("Украънська", ukrIcon);
+        ImageIcon ukrIcon = new ImageIcon("ukraine.png","ua");
+        ImageIcon usaIcon = new ImageIcon("united-states.png","en");
+        ImageIcon rusIcon = new ImageIcon("russia.png","ru");
         JComboBox<ImageIcon> languageBox = new JComboBox<>();
         languageBox.addItem(ukrIcon);
         languageBox.addItem(usaIcon);
         languageBox.addItem(rusIcon);
+
         languageBox.setBounds(250,80,50,25);
         panel.add(languageBox);
 
@@ -84,10 +113,10 @@ public class LoginWindow extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("enterSystem")){
-            String login = loginText.getText();
+            String login = "omoskaliuk"; //loginText.getText();
             System.out.println(login);
 
-            String password = new String(passwordText.getText());
+            String password = "sasha1986";//new String(passwordText.getText());
             System.out.println(password);
 
             User user = new User();

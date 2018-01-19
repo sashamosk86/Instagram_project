@@ -20,6 +20,12 @@ public class ErrorWindow extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         panel = new JPanel();
         panel.setLayout(null);
